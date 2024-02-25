@@ -100,8 +100,6 @@
 // };
 // export default Context;
 
-
-
 import React, { useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
@@ -111,56 +109,40 @@ const Dashboard = () => {
     { id: 1, name: "folder1" },
     { id: 2, name: "folder2" },
   ]);
-  const [message, setMessage] = useState("");
-  // const [Buttonpop, setButtonpop] = useState(false);
-  // const [Deletepop, setDeletepop] = useState(null);
-  const [Renamepop, setRenamepop] = useState(null);
- const [modelAction, setModelAction] = useState({"action": null, "folderId": null}) //create, delete, rename
-  const [renameValue, setRenameValue] = useState("");
-  const handleChange = (event) => {
-    setMessage(event.target.value);
-  };
+  const [modelAction, setModelAction] = useState({
+    action: null,
+    folderId: null,
+    folderName: null,
+  }); //create, delete, rename
 
   const handleFolderCreation = (message) => {
+    console.log("creating folder");
     if (message !== "") {
       setFolders((prevFolders) => [
         ...prevFolders,
         { id: prevFolders.length + 1, name: message },
       ]);
-      setMessage("");
-      // setButtonpop(false);
-      setModelAction({action: null, folderId: null})
-    } else {
-      alert("Folder name should not be empty");
-    }
+
+      setModelAction({ action: null, folderId: null });
+    }else(alert("Folder name can not be empty"))
   };
 
   const handleDeleteFolder = (folderId) => {
-    console.log("inside handleDeletFler:", folderId)
+    console.log("inside handleDeleteFolder:", folderId);
     setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.id !== folderId)
     );
-    setModelAction({action: null, folderId: null});
+    setModelAction({ action: null, folderId: null });
   };
 
-  const handleRenameFolder = (folderId) => {
-    setModelAction({action: null, folderId: null});
-    setRenamepop(folderId);
-    const folder = Folders.find((folder) => folder.id === folderId);
-    setRenameValue(folder.name);
-  };
-
-  const handleRenameChange = (event) => {
-    setRenameValue(event.target.value);
-  };
-
-  const handleRenameSubmit = (folderId) => {
-    setFolders((prevFolders) =>
-      prevFolders.map((folder) =>
-        folder.id === folderId ? { ...folder, name: renameValue } : folder
-      )
-    );
-    setRenamepop(null);
+  const handleRenameFolder = (folderId, folderName) => {
+    setModelAction({ action: "rename", folderId: folderId, folderName: folderName });
+    console.log("FolderId:folderName", folderId, folderName);
+    Folders.forEach((folder) => {
+      folder.id === folderId ? folder.name = folderName : folder.name = folder.name
+    })
+    setFolders(Folders);
+    // setModelAction({ action: null, folderId: null, folderName:null });
   };
 
   return (
@@ -170,36 +152,21 @@ const Dashboard = () => {
           <div
             className="folder-container"
             key={val.id}
-            onClick={() => setModelAction({action:"delete", folderId: val.id})}
+            onClick={() => setModelAction({ action: null, folderId: val.id, folderName: val.name })}
           >
             <FcOpenedFolder size={65} />
-            {Renamepop === val.id ? (
-              <input
-                autoFocus
-                style={{ maxWidth: "50px", maxHeight: "40px" }}
-                type="text"
-                value={renameValue}
-                onChange={handleRenameChange}
-                onBlur={() => handleRenameSubmit(val.id)}
-              />
-            ) : (
-              <div style={{ width: "60px", height: "60px", marginLeft: "5px" }}>
-                {val.name}
-              </div>
-            )}
+            <div style={{ width: "50px", marginLeft: "5px" }}>{val.name}</div>
           </div>
         ))}
       </div>
 
       <Sidebar
-        handleChange={handleChange}
         handleFolderCreation={handleFolderCreation}
         handleDeleteFolder={handleDeleteFolder}
-        message={message}
-        Buttonpop={modelAction.action==="create"}
-        setButtonpop={setModelAction}
-        Deletepop={modelAction.folderId}
-        setDeletepop={setModelAction}
+        modelAction={modelAction}
+        setModelAction={setModelAction}
+        deletingFolderId={modelAction.folderId}
+        renameFolder={modelAction.folderName}
         handleRenameFolder={handleRenameFolder}
       />
     </>
