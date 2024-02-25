@@ -15,14 +15,28 @@
     max-width:640px;
     background-color: #FFF;
 }
-.cabtn{
+.folder-input{
+    margin-bottom: 10px;
+}
+.cancel-button{
     background-color: red;
     color: #FFF;
+    margin-right: 10px;
 
 }
-.crbtn{
+
+.cancel-button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.create-button{
     background-color: green;
     color: #FFF;
+}
+.create-button:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .del:hover{
     cursor: pointer;
