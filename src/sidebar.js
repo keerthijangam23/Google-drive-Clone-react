@@ -1,4 +1,3 @@
-
 // import React from "react";
 // import { NewFolder } from "./NewFolderpop";
 // import FolderClickpop from "./FolderClickpop";
@@ -49,22 +48,18 @@
 
 // export default Sidebar;
 
-
-
-
 import React from "react";
-import { NewFolder } from "./NewFolderpop";
 import FolderClickpop from "./FolderClickpop";
+import ModelPopup from "./ModelPop";
 
 const Sidebar = ({
-  handleChange,
   handleFolderCreation,
   handleDeleteFolder,
-  message,
-  Buttonpop,
+  modelAction,
   setModelAction,
-  Deletepop,
-  handleRenameFolder
+  deletingFolderId,
+  renameFolder,
+  handleRenameFolder,
 }) => {
   return (
     <>
@@ -74,29 +69,48 @@ const Sidebar = ({
           src="https://tse1.mm.bing.net/th?id=OIP.nAzvj5hw-KpsOtwXu-EOFQHaGo&pid=Api&rs=1&c=1&qlt=95&w=139&h=124"
         />
         <br />
-        <button className="item" onClick={() => setModelAction({action: "create", folderId: null})}>
+        <button
+          className="item"
+          onClick={() => setModelAction({ action: "create", folderId: null })}
+        >
           New
         </button>
       </div>
 
-      <NewFolder
-        trigger={Buttonpop}
-        message={message}
-        handleChange={handleChange}
-        handleFolderCreation={handleFolderCreation}
-        setButtonpop={setModelAction}
-      />
+      {modelAction.action && (
+        <ModelPopup
+          handleSubmit={({ id, name }) => {
+            console.log("clicked model ", id, name);
+            return modelAction.action === "create"
+              ? handleFolderCreation(name)
+              : modelAction.folderName
+              ? (handleRenameFolder(id, name),
+                setModelAction({
+                  action: null,
+                  folderId: null,
+                  folderName: null,
+                }))
+              : handleDeleteFolder();
+          }}
+          handleClose={() => {
+            setModelAction({ action: null, folderId: null });
+          }}
+          val={{ id: modelAction.folderId, name: modelAction.folderName }}
+        />
+      )}
 
-      <FolderClickpop
-        trigger={Deletepop}
-        setTrigger={setModelAction}
-        handleDeleteFolder={handleDeleteFolder}
-        folderId={Deletepop}
-        handleRenameFolder={handleRenameFolder}
-      />
+      {modelAction.folderId && (
+        <FolderClickpop
+          trigger={true}
+          setModelAction={setModelAction}
+          handleDeleteFolder={handleDeleteFolder}
+          folderId={deletingFolderId}
+          folderName={renameFolder}
+          handleRenameFolder={handleRenameFolder}
+        />
+      )}
     </>
   );
 };
 
 export default Sidebar;
-
