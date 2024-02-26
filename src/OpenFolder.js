@@ -1,5 +1,8 @@
-export default function OpenFolder(){
-    return(
-        <h1>Inside Folder</h1>
-    );
+import { FaFileAlt } from "react-icons/fa";
+export default function OpenFolder() {
+  return (
+    <div>
+      <FaFileAlt size={60} />
+    </div>
+  );
 }
