@@ -103,7 +103,7 @@
 import React, { useEffect, useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
-import { BrowserRouter,Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [Folders, setFolders] = useState(
@@ -118,10 +118,7 @@ const Dashboard = () => {
     folderName: null,
   }); //create, delete, rename
 
-
-
   const handleFolderCreation = (message) => {
-  
     if (message !== "") {
       setFolders((prevFolders) => [
         ...prevFolders,
@@ -133,7 +130,6 @@ const Dashboard = () => {
   };
 
   const handleDeleteFolder = (folderId) => {
-   
     setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.id !== folderId)
     );
@@ -146,7 +142,7 @@ const Dashboard = () => {
       folderId: folderId,
       folderName: folderName,
     });
-   
+
     Folders.forEach((folder) => {
       folder.id === folderId
         ? (folder.name = folderName)
@@ -161,10 +157,7 @@ const Dashboard = () => {
   //   //   { id: 2, name: "f2" },
   //   // ];
   //   // setFolders(newFolders);
-    
-   
- 
-    
+
   // };
 
   useEffect(() => {
