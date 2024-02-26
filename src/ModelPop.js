@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ModelPop.css"
 export default function ModelPopup({ handleSubmit, handleClose, val }) {
   let name = "Untitled folder";
   if (val.name !== undefined) {
