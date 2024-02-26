@@ -52,7 +52,7 @@ const FolderClickpop = ({
         <div
           className="del"
           onClick={() => {
-            // console.log("clicked delete");
+           
             handleDeleteFolder(folderId);
           }}
         >

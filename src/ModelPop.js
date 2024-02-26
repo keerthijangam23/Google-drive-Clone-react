@@ -5,8 +5,7 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
     name = val.name;
   }
   const [folderName, setFolderName] = useState(name);
-  // console.log(folderName);
-  // console.log("value passed is " + val.id);
+ 
   return (
     <div className="popup">
       <div class="popup-inner">

@@ -118,10 +118,10 @@ const Dashboard = () => {
     folderName: null,
   }); //create, delete, rename
 
-  // console.log("folders array", Folders);
+
 
   const handleFolderCreation = (message) => {
-    // console.log("creating folder");
+  
     if (message !== "") {
       setFolders((prevFolders) => [
         ...prevFolders,
@@ -133,7 +133,7 @@ const Dashboard = () => {
   };
 
   const handleDeleteFolder = (folderId) => {
-    // console.log("inside handleDeleteFolder:", folderId);
+   
     setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.id !== folderId)
     );
@@ -146,7 +146,7 @@ const Dashboard = () => {
       folderId: folderId,
       folderName: folderName,
     });
-    // console.log("FolderId:folderName", folderId, folderName);
+   
     Folders.forEach((folder) => {
       folder.id === folderId
         ? (folder.name = folderName)
@@ -169,7 +169,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(Folders));
-  }, [handleFolderCreation, handleDeleteFolder, handleRenameFolder]);
+  }, [Folders]);
 
   return (
     <>
