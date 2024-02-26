@@ -3,7 +3,7 @@ import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
 
 const Dashboard = () => {
-  const [Folders, setFolders] = useState(
+  const [folders, setFolders] = useState(
     JSON.parse(localStorage.getItem("folders")) || [
       { id: 1, name: "folder1" },
       { id: 2, name: "folder2" },
@@ -40,22 +40,22 @@ const Dashboard = () => {
       folderName: folderName,
     });
 
-    Folders.forEach((folder) => {
+    folders.forEach((folder) => {
       folder.id === folderId
         ? (folder.name = folderName)
         : (folder.name = folder.name);
     });
-    setFolders(Folders);
+    setFolders(folders);
   };
 
   useEffect(() => {
-    localStorage.setItem("folders", JSON.stringify(Folders));
-  }, [Folders]);
+    localStorage.setItem("folders", JSON.stringify(folders));
+  }, [folders]);
 
   return (
     <>
       <div className="folders">
-        {Folders.map((val) => (
+        {folders.map((val) => (
           <div
             className="folder-container"
             key={val.id}
