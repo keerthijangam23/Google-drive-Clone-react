@@ -60,6 +60,7 @@ const Sidebar = ({
   deletingFolderId,
   renameFolder,
   handleRenameFolder,
+  handleOpenFolder
 }) => {
   return (
     <>
@@ -84,13 +85,13 @@ const Sidebar = ({
             return modelAction.action === "create"
               ? handleFolderCreation(name)
               : modelAction.folderName
-              ? (handleRenameFolder(id, name),
+               && (handleRenameFolder(id, name),
                 setModelAction({
                   action: null,
                   folderId: null,
                   folderName: null,
                 }))
-              : handleDeleteFolder();
+              
           }}
           handleClose={() => {
             setModelAction({ action: null, folderId: null });
@@ -107,6 +108,7 @@ const Sidebar = ({
           folderId={deletingFolderId}
           folderName={renameFolder}
           handleRenameFolder={handleRenameFolder}
+          handleOpenFolder={handleOpenFolder}
         />
       )}
     </>

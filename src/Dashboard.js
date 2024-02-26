@@ -100,12 +100,14 @@
 // };
 // export default Context;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
 
+
 const Dashboard = () => {
-  const [Folders, setFolders] = useState([
+  
+  const [Folders, setFolders] = useState(JSON.parse(localStorage.getItem('folders')) || [
     { id: 1, name: "folder1" },
     { id: 2, name: "folder2" },
   ]);
@@ -114,6 +116,8 @@ const Dashboard = () => {
     folderId: null,
     folderName: null,
   }); //create, delete, rename
+
+  console.log("folders array", Folders);
 
   const handleFolderCreation = (message) => {
     console.log("creating folder");
@@ -124,7 +128,7 @@ const Dashboard = () => {
       ]);
 
       setModelAction({ action: null, folderId: null });
-    }else(alert("Folder name can not be empty"))
+    } else alert("Folder name can not be empty");
   };
 
   const handleDeleteFolder = (folderId) => {
@@ -136,14 +140,34 @@ const Dashboard = () => {
   };
 
   const handleRenameFolder = (folderId, folderName) => {
-    setModelAction({ action: "rename", folderId: folderId, folderName: folderName });
+    setModelAction({
+      action: "rename",
+      folderId: folderId,
+      folderName: folderName,
+    });
     console.log("FolderId:folderName", folderId, folderName);
     Folders.forEach((folder) => {
-      folder.id === folderId ? folder.name = folderName : folder.name = folder.name
-    })
+      folder.id === folderId
+        ? (folder.name = folderName)
+        : (folder.name = folder.name);
+    });
     setFolders(Folders);
     // setModelAction({ action: null, folderId: null, folderName:null });
   };
+
+  
+
+  const handleOpenFolder = (folderId) => {
+    // const newFolders = [
+    //   { id: 1, name: "f1" },
+    //   { id: 2, name: "f2" },
+    // ];
+    // setFolders(newFolders);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("folders", JSON.stringify(Folders));
+  }, [handleFolderCreation, handleDeleteFolder, handleRenameFolder]);
 
   return (
     <>
@@ -152,7 +176,13 @@ const Dashboard = () => {
           <div
             className="folder-container"
             key={val.id}
-            onClick={() => setModelAction({ action: null, folderId: val.id, folderName: val.name })}
+            onClick={() =>
+              setModelAction({
+                action: null,
+                folderId: val.id,
+                folderName: val.name,
+              })
+            }
           >
             <FcOpenedFolder size={65} />
             <div style={{ width: "50px", marginLeft: "5px" }}>{val.name}</div>
@@ -168,6 +198,7 @@ const Dashboard = () => {
         deletingFolderId={modelAction.folderId}
         renameFolder={modelAction.folderName}
         handleRenameFolder={handleRenameFolder}
+        handleOpenFolder={handleOpenFolder}
       />
     </>
   );

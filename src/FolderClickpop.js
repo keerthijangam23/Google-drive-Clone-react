@@ -39,12 +39,13 @@ const FolderClickpop = ({
   folderId,
   folderName,
   handleRenameFolder,
+  handleOpenFolder
 }) => {
   const [trigger, setTrigger] = useState(true);
   return trigger ? (
     <div className="popup">
       <div className="popup-inner">
-        <div className="Open">Open</div>
+        <div className="Open" onClick={()=>{handleOpenFolder(folderId)}}>Open</div>
         <br />
         <div
           className="del"
