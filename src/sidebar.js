@@ -10,7 +10,6 @@ const Sidebar = ({
   deletingFolderId,
   renameFolder,
   handleRenameFolder,
-  handleOpenFolder,
 }) => {
   return (
     <>
@@ -56,7 +55,6 @@ const Sidebar = ({
           folderId={deletingFolderId}
           folderName={renameFolder}
           handleRenameFolder={handleRenameFolder}
-          handleOpenFolder={handleOpenFolder}
         />
       )}
     </>
