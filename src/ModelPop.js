@@ -5,7 +5,6 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
     name = val.name;
   }
   const [folderName, setFolderName] = useState(name);
- 
   return (
     <div className="popup">
       <div class="popup-inner">
@@ -29,7 +28,6 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
             className="create-button"
             onClick={(e) => {
               handleSubmit({ id: val.id, name: folderName });
-              // handleClose();
             }}
           >
             {val.name ? "Rename" : "Create"}
