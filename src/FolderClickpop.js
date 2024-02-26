@@ -32,7 +32,7 @@
 import React from "react";
 import { useState } from "react";
 import "./popup.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const FolderClickpop = ({
   setModelAction,
@@ -47,12 +47,18 @@ const FolderClickpop = ({
   return trigger ? (
     <div className="popup">
       <div className="popup-inner">
-        <div className="Open" onClick ={()=>{navigate(`/folder/${folderId}`)}}>Open</div>
+        <div
+          className="open"
+          onClick={() => {
+            navigate(`/folder/${folderId}`);
+          }}
+        >
+          Open
+        </div>
         <br />
         <div
           className="del"
           onClick={() => {
-           
             handleDeleteFolder(folderId);
           }}
         >
@@ -60,7 +66,7 @@ const FolderClickpop = ({
         </div>
         <br />
         <div
-          className="Rename"
+          className="rename"
           onClick={() => {
             setTrigger(false);
             handleRenameFolder(folderId, folderName);
@@ -70,7 +76,7 @@ const FolderClickpop = ({
         </div>
         <br />
         <div
-          className="Cancel"
+          className="cancel"
           onClick={() => setModelAction({ action: null, folderId: null })}
         >
           Cancel
