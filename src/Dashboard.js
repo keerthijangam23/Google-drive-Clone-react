@@ -103,6 +103,7 @@
 import React, { useEffect, useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
+import { BrowserRouter,Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [Folders, setFolders] = useState(
@@ -154,13 +155,17 @@ const Dashboard = () => {
     setFolders(Folders);
   };
 
-  const handleOpenFolder = (folderId) => {
-    // const newFolders = [
-    //   { id: 1, name: "f1" },
-    //   { id: 2, name: "f2" },
-    // ];
-    // setFolders(newFolders);
-  };
+  // const HandleOpenFolder = (folderId) => {
+  //   // const newFolders = [
+  //   //   { id: 1, name: "f1" },
+  //   //   { id: 2, name: "f2" },
+  //   // ];
+  //   // setFolders(newFolders);
+    
+   
+ 
+    
+  // };
 
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(Folders));
@@ -195,7 +200,7 @@ const Dashboard = () => {
         deletingFolderId={modelAction.folderId}
         renameFolder={modelAction.folderName}
         handleRenameFolder={handleRenameFolder}
-        handleOpenFolder={handleOpenFolder}
+        // handleOpenFolder={HandleOpenFolder}
       />
     </>
   );

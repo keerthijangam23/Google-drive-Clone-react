@@ -1,15 +1,18 @@
-import Dashboard from "./Dashboard"
-import SearchBar from "./search";
+import OpenFolder from "./OpenFolder";
+import Main from "./Main";
 import "./style.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <SearchBar/>
-      <div className="container">
-        <Dashboard/>
-      </div>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/OpenFolder/:folderName" element={<OpenFolder />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
