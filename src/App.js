@@ -5,14 +5,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/OpenFolder/:folderName" element={<OpenFolder />} />
+          <Route path="/folder/:folderId" element={<OpenFolder />} />
         </Routes>
       </BrowserRouter>
-    </>
   );
 }
 

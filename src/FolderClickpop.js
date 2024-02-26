@@ -47,7 +47,7 @@ const FolderClickpop = ({
   return trigger ? (
     <div className="popup">
       <div className="popup-inner">
-        <div className="Open" onClick ={()=>{navigate(`/OpenFolder/${folderName}`)}}>Open</div>
+        <div className="Open" onClick ={()=>{navigate(`/folder/${folderId}`)}}>Open</div>
         <br />
         <div
           className="del"
