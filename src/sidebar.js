@@ -1,6 +1,7 @@
 import React from "react";
 import FolderClickpop from "./FolderClickpop";
 import ModelPopup from "./ModelPop";
+import "./sidebar.css"
 
 const Sidebar = ({
   handleFolderCreation,
@@ -20,7 +21,7 @@ const Sidebar = ({
         />
         <br />
         <button
-          className="item"
+          className="new-button"
           onClick={() => setModelAction({ action: "create", folderId: null })}
         >
           New
