@@ -1,67 +1,55 @@
-.popup{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background-color: rgba(0,0,0,0.2);
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.popup-inner{
-    position: realtive;
-    padding:32px;
-    max-width:640px;
-    background-color: #FFF;
+.popup-inner {
+  position: realtive;
+  padding: 32px;
+  max-width: 640px;
+  background-color: #fff;
 }
-.folder-input{
-    margin-bottom: 10px;
+.folder-input {
+  margin-bottom: 10px;
 }
-.cancel-button{
-    background-color: red;
-    color: #FFF;
-    margin-right: 10px;
-
-}
-
-.cancel-button:hover{
-    text-decoration: underline;
-    cursor: pointer;
+.cancel-button {
+  background-color: red;
+  color: #fff;
+  margin-right: 10px;
 }
 
-.create-button{
-    background-color: green;
-    color: #FFF;
-}
-.create-button:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
-.del:hover{
-    cursor: pointer;
-    text-decoration: underline;
-}
-.Rename:hover{
-    cursor: pointer;
-    text-decoration: underline;
-}
-.Cancel:hover{
-    cursor: pointer;
-    text-decoration: underline;
-}
-.Open:hover{
-    cursor: pointer;
-    text-decoration: underline;
+.cancel-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-
-
-
-
-
-  
-  
-
-
-
+.create-button {
+  background-color: green;
+  color: #fff;
+}
+.create-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.del:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.rename:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.cancel:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.open:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
