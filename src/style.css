@@ -6,11 +6,11 @@
 .folder-container {
   margin: 30px;
 }
-
-.search {
-  margin-top: 50px;
-  margin-left: 500px;
+.folder-name{
+ width: 50px;
+ margin-left:5px
 }
+
 .side {
   margin-top: -200px;
   margin-left: 50px;

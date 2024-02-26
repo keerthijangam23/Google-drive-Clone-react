@@ -68,7 +68,7 @@ const Dashboard = () => {
             }
           >
             <FcOpenedFolder size={65} />
-            <div style={{ width: "50px", marginLeft: "5px" }}>{val.name}</div>
+            <div className="folder-name">{val.name}</div>
           </div>
         ))}
       </div>
