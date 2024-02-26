@@ -17,8 +17,7 @@ const Sidebar = ({
       <div className="side">
         <img
           className="drive-image"
-          src="https://tse1.mm.bing.net/th?id=OIP.nAzvj5hw-KpsOtwXu-EOFQHaGo&pid=Api&rs=1&c=1&qlt=95&w=139&h=124"
-        />
+          src="./Images/drivePic.jpg"/>
         <br />
         <button
           className="new-button"
