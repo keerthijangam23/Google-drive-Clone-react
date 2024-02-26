@@ -103,7 +103,6 @@
 import React, { useEffect, useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
-import { BrowserRouter, Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [Folders, setFolders] = useState(
