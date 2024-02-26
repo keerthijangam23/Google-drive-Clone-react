@@ -1,13 +1,12 @@
 import { useState } from "react";
 export default function ModelPopup({ handleSubmit, handleClose, val }) {
   let name = "Untitled folder";
-  if(val.name !== undefined){
-    name = val.name
+  if (val.name !== undefined) {
+    name = val.name;
   }
   const [folderName, setFolderName] = useState(name);
-  console.log(folderName);
-
-  console.log("value passed is " + val.id);
+  // console.log(folderName);
+  // console.log("value passed is " + val.id);
   return (
     <div className="popup">
       <div class="popup-inner">
@@ -18,11 +17,10 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
           type="text"
           onChange={(event) => {
             setFolderName(event.target.value);
-           
           }}
           value={folderName}
         />
-        
+
         <div className="folder-buttons-container">
           <button className="cancel-button" onClick={() => handleClose()}>
             Cancel

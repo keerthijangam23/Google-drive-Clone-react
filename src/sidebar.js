@@ -81,7 +81,7 @@ const Sidebar = ({
       {modelAction.action && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
-            console.log("clicked model ", id, name);
+            // console.log("clicked model ", id, name);
             return modelAction.action === "create"
               ? handleFolderCreation(name)
               : modelAction.folderName

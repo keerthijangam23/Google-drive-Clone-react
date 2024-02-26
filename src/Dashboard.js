@@ -104,23 +104,23 @@ import React, { useEffect, useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
 
-
 const Dashboard = () => {
-  
-  const [Folders, setFolders] = useState(JSON.parse(localStorage.getItem('folders')) || [
-    { id: 1, name: "folder1" },
-    { id: 2, name: "folder2" },
-  ]);
+  const [Folders, setFolders] = useState(
+    JSON.parse(localStorage.getItem("folders")) || [
+      { id: 1, name: "folder1" },
+      { id: 2, name: "folder2" },
+    ]
+  );
   const [modelAction, setModelAction] = useState({
     action: null,
     folderId: null,
     folderName: null,
   }); //create, delete, rename
 
-  console.log("folders array", Folders);
+  // console.log("folders array", Folders);
 
   const handleFolderCreation = (message) => {
-    console.log("creating folder");
+    // console.log("creating folder");
     if (message !== "") {
       setFolders((prevFolders) => [
         ...prevFolders,
@@ -132,11 +132,11 @@ const Dashboard = () => {
   };
 
   const handleDeleteFolder = (folderId) => {
-    console.log("inside handleDeleteFolder:", folderId);
+    // console.log("inside handleDeleteFolder:", folderId);
     setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.id !== folderId)
     );
-    setModelAction({ action: null, folderId: null });
+    setModelAction({ action: null, folderId: null, folderName: null });
   };
 
   const handleRenameFolder = (folderId, folderName) => {
@@ -145,17 +145,14 @@ const Dashboard = () => {
       folderId: folderId,
       folderName: folderName,
     });
-    console.log("FolderId:folderName", folderId, folderName);
+    // console.log("FolderId:folderName", folderId, folderName);
     Folders.forEach((folder) => {
       folder.id === folderId
         ? (folder.name = folderName)
         : (folder.name = folder.name);
     });
     setFolders(Folders);
-    // setModelAction({ action: null, folderId: null, folderName:null });
   };
-
-  
 
   const handleOpenFolder = (folderId) => {
     // const newFolders = [
