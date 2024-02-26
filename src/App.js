@@ -1,6 +1,7 @@
 import OpenFolder from "./OpenFolder";
 import Dashboard from "./Dashboard";
 import "./style.css";
+import "./Dashboard.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
