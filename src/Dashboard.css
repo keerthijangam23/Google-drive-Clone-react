@@ -1,16 +1,15 @@
 .folders {
-    margin-left: 600px;
-    display: flex;
-    margin-top: 100px;
-  }
-  .folder-container {
-    margin: 30px;
-  }
-  .folder-name{
-   width: 50px;
-   margin-left:5px
-  }
-  .folder-container:hover{
-    cursor: pointer;
-  
-  }
+  margin-left: 600px;
+  display: flex;
+  margin-top: 100px;
+}
+.folder-container {
+  margin: 30px;
+}
+.folder-name {
+  width: 50px;
+  margin-left: 5px;
+}
+.folder-container:hover {
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import Sidebar from "./sidebar";
+import OpenFolder from "./OpenFolder";
 
 const Dashboard = () => {
   const [folders, setFolders] = useState(
@@ -9,6 +10,7 @@ const Dashboard = () => {
       { id: 2, name: "folder2" },
     ]
   );
+
   const [modelAction, setModelAction] = useState({
     action: null,
     folderId: null,
