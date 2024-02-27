@@ -10,11 +10,19 @@ const Dashboard = () => {
       { id: 2, name: "folder2" },
     ]
   );
-
+  const [folder, setfolder] = useState(`files ${null}`);
+  const [files, setFiles] = useState(
+    JSON.parse(localStorage.getItem(folder)) ||
+    [
+      { id: 1, name: "file1", folderId: 1 },
+      { id: 2, name: "file2", folderId: 2 },
+    ]
+  );
   const [modelAction, setModelAction] = useState({
     action: null,
     folderId: null,
     folderName: null,
+    isSelected:false
   });
 
   const handleFolderCreation = (message) => {
@@ -54,6 +62,13 @@ const Dashboard = () => {
     localStorage.setItem("folders", JSON.stringify(folders));
   }, [folders]);
 
+  useEffect(
+    (folder) => {
+      localStorage.setItem(folder, JSON.stringify(files));
+    },
+    [files]
+  );
+
   return (
     <>
       <div className="folders">
@@ -66,7 +81,8 @@ const Dashboard = () => {
                 action: null,
                 folderId: val.id,
                 folderName: val.name,
-              })
+                isSelected:false
+              }) && setfolder(`files ${val.id}`)
             }
           >
             <FcOpenedFolder size={65} />
@@ -84,6 +100,14 @@ const Dashboard = () => {
         renameFolder={modelAction.folderName}
         handleRenameFolder={handleRenameFolder}
       />
+      {modelAction.isSelected && (
+        <OpenFolder
+          folderId={modelAction.folderId}
+          files={files.filter((file) => file.folderId === modelAction.folderId)}
+          setFiles={setFiles}
+          folder={folder}
+        />
+      )}
     </>
   );
 };
