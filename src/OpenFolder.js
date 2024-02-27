@@ -6,21 +6,15 @@ import { useParams } from "react-router-dom";
 export default function OpenFolder() {
   const [files, setFiles] = useState(
     JSON.parse(localStorage.getItem("files")) || [
-      { id: 1, name: "file1",folderId:1},
-      { id: 2, name: "file1",folderId:2},
-      { id: 3, name: "file2",folderId:2},
-      { id: 4, name: "file1",folderId:3},
-      { id: 5, name: "file2",folderId:3},
-      { id: 6, name: "file3",folderId:3}
+      { id: 1, name: "file1", folderId: 1 },
+      { id: 2, name: "file1", folderId: 2 },
+      { id: 3, name: "file2", folderId: 2 },
+      { id: 4, name: "file1", folderId: 3 },
+      { id: 5, name: "file2", folderId: 3 },
+      { id: 6, name: "file3", folderId: 3 },
     ]
   );
   const { folderId } = useParams();
-  
-  // const [modelActionFile, setModelActionFile] = useState({
-  //   action: null,
-  //   fileId: null,
-  //   fileName: null,
-  // });
 
   useEffect(() => {
     localStorage.setItem("files", JSON.stringify(files));

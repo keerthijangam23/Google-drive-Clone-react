@@ -1,8 +1,51 @@
 import { useState } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
+import ModelPopup from "./ModelPop";
+import FolderClickpop from "./FolderClickpop";
 
-export default function Folder({ folders, setModelAction }) {
+export default function Folder({ folders,setFolders,modelAction, setModelAction,handleFolderCreation }) {
+  const navigate = useNavigate(); 
+  const [trigger, setTrigger] = useState(true);
+  
+  const handleDeleteFolder = (folderId) => {
+    setFolders((prevFolders) =>
+      prevFolders.filter((folder) => folder.id !== folderId)
+    );
+    setModelAction({ action: null, folderId: null, folderName: null });
+  };
+
+  const handleRenameFolder = (folderId, folderName) => {
+    setTrigger(false);
+    setModelAction({
+      action: "rename",
+      folderId: folderId,
+      folderName: folderName,
+    });
+
+    folders.map((folder) => {
+      folder.id === folderId
+        ? (folder.name = folderName)
+        : (folder.name = folder.name);
+    });
+    setFolders(folders);
+  };
+  const handleCancel = () => {
+    setModelAction({ action: null, folderId: null });
+  };
+
+  const handleOpenFolder = (folderId, folderName) => {
+    navigate(`/folder/${folderId}`);
+    setModelAction({
+      action: null,
+      folderId: folderId,
+      folderName: folderName,
+      isSelectd: true,
+    });
+  };
+
   return (
+    <>
     <div className="folders">
       {folders.map((val) => (
         <div
@@ -13,7 +56,7 @@ export default function Folder({ folders, setModelAction }) {
               action: null,
               folderId: val.id,
               folderName: val.name,
-              isSelected: false,
+              // isSelected: false,
             })
           }
         >
@@ -22,5 +65,40 @@ export default function Folder({ folders, setModelAction }) {
         </div>
       ))}
     </div>
+
+    {modelAction.action && (
+        <ModelPopup
+          handleSubmit={({ id, name }) => {
+            return modelAction.action === "create"
+              ? handleFolderCreation(name)
+              : modelAction.folderName &&
+                  (handleRenameFolder(id, name),
+                  setModelAction({
+                    action: null,
+                    folderId: null,
+                    folderName: null,
+                  }));
+          }}
+          handleClose={() => {
+            setModelAction({ action: null, folderId: null });
+          }}
+          val={{ id: modelAction.folderId, name: modelAction.folderName }}
+        />
+      )}
+
+      {modelAction.folderId && (
+        <FolderClickpop
+          trigger={trigger}
+          setModelAction={setModelAction}
+          handleDeleteFolder={handleDeleteFolder}
+          folderId={modelAction.folderId}
+          folderName={modelAction.folderName}
+          handleRenameFolder={handleRenameFolder}
+          handleCancel={handleCancel}
+          handleOpenFolder={handleOpenFolder}
+          
+        />
+      )}
+    </>
   );
 }
