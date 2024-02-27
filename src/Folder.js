@@ -4,9 +4,20 @@ import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop";
 import FolderClickpop from "./FolderClickpop";
 
-export default function Folder({ folders,setFolders,modelAction, setModelAction,handleFolderCreation }) {
+export default function Folder({ folders,setFolders,modelAction, setModelAction }) {
   const navigate = useNavigate(); 
   const [trigger, setTrigger] = useState(true);
+
+  const handleFolderCreation = (message) => {
+    if (message !== "") {
+      setFolders((prevFolders) => [
+        ...prevFolders,
+        { id: prevFolders.length + 1, name: message },
+      ]);
+
+      setModelAction({ action: null, folderId: null });
+    } else alert("Folder name can not be empty");
+  };
   
   const handleDeleteFolder = (folderId) => {
     setFolders((prevFolders) =>
@@ -30,7 +41,7 @@ export default function Folder({ folders,setFolders,modelAction, setModelAction,
     });
     setFolders(folders);
   };
-  
+
   const handleCancel = () => {
     setModelAction({ action: null, folderId: null });
   };

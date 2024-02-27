@@ -21,17 +21,6 @@ const Dashboard = () => {
     setModelAction({ action: "create", folderId: null });
   };
 
-  const handleFolderCreation = (message) => {
-    if (message !== "") {
-      setFolders((prevFolders) => [
-        ...prevFolders,
-        { id: prevFolders.length + 1, name: message },
-      ]);
-
-      setModelAction({ action: null, folderId: null });
-    } else alert("Folder name can not be empty");
-  };
-
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(folders));
   }, [folders]);
@@ -43,13 +32,9 @@ const Dashboard = () => {
         setFolders={setFolders}
         modelAction={modelAction}
         setModelAction={setModelAction}
-        handleFolderCreation={handleFolderCreation}
       />
 
-      <Sidebar
-        handleFolderCreation={handleFolderCreation}
-        handleNewButtonClick={handleNewButtonClick}
-      />
+      <Sidebar handleNewButtonClick={handleNewButtonClick} />
     </>
   );
 };
