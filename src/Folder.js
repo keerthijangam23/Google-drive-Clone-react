@@ -30,6 +30,7 @@ export default function Folder({ folders,setFolders,modelAction, setModelAction,
     });
     setFolders(folders);
   };
+  
   const handleCancel = () => {
     setModelAction({ action: null, folderId: null });
   };
