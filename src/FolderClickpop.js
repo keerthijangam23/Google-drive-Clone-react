@@ -19,6 +19,10 @@ const FolderClickpop = ({
           className="open"
           onClick={() => {
             navigate(`/folder/${folderId}`);
+            setModelAction({action: null,
+              folderId: folderId,
+              folderName: folderName,
+              isSelectd:true})
           }}
         >
           Open
