@@ -1,15 +1,19 @@
 import React from "react";
 import "../css-styles/FolderActionPopUp.css";
+import { FoldersContext, ModelActionContext } from "./Dashboard";
+import { useContext } from "react";
 
 const FolderActionPopUp = ({
   handleDeleteFolder,
-  folderId,
-  folderName,
   handleRenameFolder,
   handleCancel,
   handleOpenFolder,
   trigger,
 }) => {
+  const modelActionContext = useContext(ModelActionContext);
+  const folderId = modelActionContext.modelAction.folderId;
+  const folderName = modelActionContext.modelAction.folderName;
+
   return trigger ? (
     <div className="popup">
       <div className="popup-inner">

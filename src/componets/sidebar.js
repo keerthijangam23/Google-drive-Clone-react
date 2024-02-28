@@ -1,20 +1,26 @@
 import React from "react";
 import "../css-styles/SideBar.css";
 import ModelPopup from "./ModelPop";
+import { FoldersContext, ModelActionContext } from "./Dashboard";
+import { useContext } from "react";
 
-const SideBar = ({ setFolders, setModelAction, modelAction }) => {
+const SideBar = () => {
+  const foldersContext = useContext(FoldersContext);
+
+  const modelActionContext = useContext(ModelActionContext);
+
   const handleNewButtonClick = () => {
-    setModelAction({ action: "create", folderId: null });
+    modelActionContext.setModelAction({ action: "create", folderId: null });
   };
 
   const handleFolderCreation = (message) => {
     if (message !== "") {
-      setFolders((prevFolders) => [
+      foldersContext.setFolders((prevFolders) => [
         ...prevFolders,
         { id: prevFolders.length + 1, name: message },
       ]);
 
-      setModelAction({ action: null, folderId: null });
+      modelActionContext.setModelAction({ action: null, folderId: null });
     } else alert("Folder name can not be empty");
   };
   return (
@@ -26,15 +32,18 @@ const SideBar = ({ setFolders, setModelAction, modelAction }) => {
           New
         </button>
       </div>
-      {modelAction.action === "create" && (
+      {modelActionContext.modelAction.action === "create" && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
             return handleFolderCreation(name);
           }}
           handleClose={() => {
-            setModelAction({ action: null, folderId: null });
+            modelActionContext.setModelAction({ action: null, folderId: null });
           }}
-          val={{ id: modelAction.folderId, name: modelAction.folderName }}
+          val={{
+            id: modelActionContext.modelAction.folderId,
+            name: modelActionContext.modelAction.folderName,
+          }}
         />
       )}
     </>

@@ -4,48 +4,51 @@ import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop";
 import FolderActionPopUp from "./FolderActionPopUp";
 import "../css-styles/MainContent.css";
+import { FoldersContext, ModelActionContext } from "./Dashboard";
+import { useContext } from "react";
 
-export default function MainContent({
-  folders,
-  setFolders,
-  modelAction,
-  setModelAction,
-}) {
+export default function MainContent() {
   const navigate = useNavigate();
   const [trigger, setTrigger] = useState(true);
+  const foldersContext = useContext(FoldersContext);
+  const modelActionContext = useContext(ModelActionContext);
 
   const handleDeleteFolder = (folderId) => {
-    setFolders((prevFolders) =>
+    foldersContext.setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.id !== folderId)
     );
-    setModelAction({ action: null, folderId: null, folderName: null });
+    modelActionContext.setModelAction({
+      action: null,
+      folderId: null,
+      folderName: null,
+    });
   };
 
   const handleRenameFolder = (folderId, folderName) => {
     setTrigger(false);
-    setModelAction({
+    modelActionContext.setModelAction({
       action: "rename",
       folderId: folderId,
       folderName: folderName,
     });
     if (folderName !== "") {
-      folders.map((folder) => {
+      foldersContext.folders.map((folder) => {
         folder.id === folderId
           ? (folder.name = folderName)
           : (folder.name = folder.name);
       });
     } else alert("Folder name can not be empty");
 
-    setFolders(folders);
+    foldersContext.setFolders(foldersContext.folders);
   };
 
   const handleCancel = () => {
-    setModelAction({ action: null, folderId: null });
+    modelActionContext.setModelAction({ action: null, folderId: null });
   };
 
   const handleOpenFolder = (folderId, folderName) => {
     navigate(`/folder/${folderId}`);
-    setModelAction({
+    modelActionContext.setModelAction({
       action: null,
       folderId: folderId,
       folderName: folderName,
@@ -54,18 +57,18 @@ export default function MainContent({
   };
 
   useEffect(() => {
-    localStorage.setItem("folders", JSON.stringify(folders));
-  }, [folders, handleRenameFolder]);
+    localStorage.setItem("folders", JSON.stringify(foldersContext.folders));
+  }, [foldersContext.folders, handleRenameFolder]);
 
   return (
     <>
       <div className="folders">
-        {folders.map((val) => (
+        {foldersContext.folders.map((val) => (
           <div
             className="folder-container"
             key={val.id}
             onClick={() =>
-              setModelAction({
+              modelActionContext.setModelAction({
                 action: null,
                 folderId: val.id,
                 folderName: val.name,
@@ -79,13 +82,13 @@ export default function MainContent({
         ))}
       </div>
 
-      {modelAction.action === "rename" && (
+      {modelActionContext.modelAction.action === "rename" && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
             return (
-              modelAction.folderId &&
+              modelActionContext.modelAction.folderId &&
               (handleRenameFolder(id, name),
-              setModelAction({
+              modelActionContext.setModelAction({
                 action: null,
                 folderId: null,
                 folderName: null,
@@ -93,19 +96,19 @@ export default function MainContent({
             );
           }}
           handleClose={() => {
-            setModelAction({ action: null, folderId: null });
+            modelActionContext.setModelAction({ action: null, folderId: null });
           }}
-          val={{ id: modelAction.folderId, name: modelAction.folderName }}
+          val={{
+            id: modelActionContext.modelAction.folderId,
+            name: modelActionContext.modelAction.folderName,
+          }}
         />
       )}
 
-      {modelAction.folderId && (
+      {modelActionContext.modelAction.folderId && (
         <FolderActionPopUp
           trigger={trigger}
-          setModelAction={setModelAction}
           handleDeleteFolder={handleDeleteFolder}
-          folderId={modelAction.folderId}
-          folderName={modelAction.folderName}
           handleRenameFolder={handleRenameFolder}
           handleCancel={handleCancel}
           handleOpenFolder={handleOpenFolder}

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import "../css-styles/ModelPop.css";
 export default function ModelPopup({ handleSubmit, handleClose, val }) {
-  // const handleSubmit = useSetModelActionContext();
   let name = val.name ? val.name : "Untitled folder";
   const [folderName, setFolderName] = useState(name);
   return (
     <div className="popup">
-      <div class="popup-inner">
+      <div className="popup-inner">
         <h2>{val.name ? "Rename" : "Create"}</h2>
         <br />
         <input
