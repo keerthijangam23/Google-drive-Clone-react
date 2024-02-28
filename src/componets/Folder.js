@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop";
@@ -50,7 +50,9 @@ export default function Folder({
       isSelectd: true,
     });
   };
-
+  useEffect(() => {
+    localStorage.setItem("folders", JSON.stringify(folders));
+  }, [folders,handleRenameFolder]);
   return (
     <>
       <div className="folders">
