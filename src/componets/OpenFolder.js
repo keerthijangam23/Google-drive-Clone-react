@@ -1,6 +1,6 @@
 import { FaFileAlt } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import "./OpenFolder.css";
+import "../css-styles/OpenFolder.css";
 import { useParams } from "react-router-dom";
 
 export default function OpenFolder() {

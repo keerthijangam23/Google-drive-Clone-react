@@ -1,16 +1,16 @@
-import OpenFolder from "./OpenFolder";
-import Dashboard from "./Dashboard";
-import "./Dashboard.css"
+import OpenFolder from "./componets/OpenFolder";
+import Dashboard from "./componets/Dashboard";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/folder/:folderId" element={<OpenFolder />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/folder/:folderId" element={<OpenFolder />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

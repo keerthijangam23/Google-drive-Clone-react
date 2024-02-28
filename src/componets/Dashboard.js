@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Folder from "./Folder";
 import Sidebar from "./sidebar";
+import "../css-styles/Dashboard.css"
 
 const Dashboard = () => {
   const [folders, setFolders] = useState(

@@ -1,5 +1,5 @@
 import React from "react";
-import "./FolderClickpop.css";
+import "../css-styles/FolderClickpop.css";
 
 const FolderClickpop = ({
   handleDeleteFolder,

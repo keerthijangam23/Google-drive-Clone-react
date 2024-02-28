@@ -1,5 +1,5 @@
 import React from "react";
-import "./sidebar.css";
+import "../css-styles/sidebar.css";
 import ModelPopup from "./ModelPop";
 
 const Sidebar = ({ setFolders, setModelAction, modelAction }) => {
