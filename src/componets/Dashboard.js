@@ -18,8 +18,6 @@ const Dashboard = () => {
     isSelected: false,
   });
 
-
-
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(folders));
   }, [folders]);
