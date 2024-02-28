@@ -28,12 +28,13 @@ export default function MainContent({
       folderId: folderId,
       folderName: folderName,
     });
-
-    folders.map((folder) => {
-      folder.id === folderId
-        ? (folder.name = folderName)
-        : (folder.name = folder.name);
-    });
+    if (folderName !== "") {
+      folders.map((folder) => {
+        folder.id === folderId
+          ? (folder.name = folderName)
+          : (folder.name = folder.name);
+      });
+    } else alert("Folder name can not be empty");
 
     setFolders(folders);
   };
