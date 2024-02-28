@@ -14,7 +14,6 @@ export default function FolderContent() {
       { id: 5, name: "file2", folderId: 3 },
       { id: 6, name: "file3", folderId: 3 },
       { id: 7, name: "file3", folderId: 5 },
-      { id: 8, name: "fileId", folderId: Number(folderId) },
       { id: 9, name: "file2", folderId: 4 },
     ]
   );
