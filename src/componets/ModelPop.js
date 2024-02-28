@@ -1,10 +1,8 @@
 import { useState } from "react";
 import "../css-styles/ModelPop.css";
 export default function ModelPopup({ handleSubmit, handleClose, val }) {
-  let name = "Untitled folder";
-  if (val.name !== undefined) {
-    name = val.name;
-  }
+  // const handleSubmit = useSetModelActionContext();
+  let name = val.name ? val.name : "Untitled folder";
   const [folderName, setFolderName] = useState(name);
   return (
     <div className="popup">
@@ -19,12 +17,10 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
           }}
           value={folderName}
         />
-
         <div className="folder-buttons-container">
           <button className="cancel-button" onClick={() => handleClose()}>
             Cancel
           </button>
-
           <button
             className="create-button"
             onClick={(e) => {

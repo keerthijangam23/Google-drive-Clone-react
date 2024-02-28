@@ -1,0 +1,18 @@
+.files {
+  margin-left: 600px;
+  display: flex;
+  margin-top: 100px;
+}
+.files-container {
+  margin: 35px;
+}
+.file {
+  margin-bottom: 18px;
+}
+.file-name {
+  width: 50px;
+  margin-left: 15px;
+}
+.files-container:hover {
+  cursor: pointer;
+}

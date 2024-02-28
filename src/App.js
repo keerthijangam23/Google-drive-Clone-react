@@ -1,4 +1,4 @@
-import OpenFolder from "./componets/OpenFolder";
+import OpenFolder from "./componets/FolderContent";
 import Dashboard from "./componets/Dashboard";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";

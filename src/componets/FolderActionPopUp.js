@@ -1,7 +1,7 @@
 import React from "react";
-import "../css-styles/FolderClickpop.css";
+import "../css-styles/FolderActionPopUp.css";
 
-const FolderClickpop = ({
+const FolderActionPopUp = ({
   handleDeleteFolder,
   folderId,
   folderName,
@@ -9,8 +9,6 @@ const FolderClickpop = ({
   handleCancel,
   handleOpenFolder,
   trigger,
-  
- 
 }) => {
   return trigger ? (
     <div className="popup">
@@ -23,7 +21,6 @@ const FolderClickpop = ({
         >
           Open
         </div>
-        <br />
         <div
           className="del"
           onClick={() => {
@@ -32,24 +29,20 @@ const FolderClickpop = ({
         >
           Delete
         </div>
-        <br />
         <div
           className="rename"
           onClick={() => {
-             handleRenameFolder(folderId,folderName)
-            // handleSubmit(folderId,folderName);
+            handleRenameFolder(folderId, folderName);
           }}
         >
           Rename
         </div>
-        <br />
         <div className="cancel" onClick={() => handleCancel()}>
           Cancel
         </div>
-        <br />
       </div>
     </div>
   ) : null;
 };
 
-export default FolderClickpop;
+export default FolderActionPopUp;

@@ -1,9 +1,8 @@
 import React from "react";
-import "../css-styles/sidebar.css";
+import "../css-styles/SideBar.css";
 import ModelPopup from "./ModelPop";
 
-const Sidebar = ({ setFolders, setModelAction, modelAction }) => {
-
+const SideBar = ({ setFolders, setModelAction, modelAction }) => {
   const handleNewButtonClick = () => {
     setModelAction({ action: "create", folderId: null });
   };
@@ -27,12 +26,10 @@ const Sidebar = ({ setFolders, setModelAction, modelAction }) => {
           New
         </button>
       </div>
-      {modelAction.action ==="create" && (
+      {modelAction.action === "create" && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
-            return (
-              handleFolderCreation(name)
-            );
+            return handleFolderCreation(name);
           }}
           handleClose={() => {
             setModelAction({ action: null, folderId: null });
@@ -44,4 +41,4 @@ const Sidebar = ({ setFolders, setModelAction, modelAction }) => {
   );
 };
 
-export default Sidebar;
+export default SideBar;

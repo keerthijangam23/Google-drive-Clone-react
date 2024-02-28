@@ -1,10 +1,11 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop";
-import FolderClickpop from "./FolderClickpop";
+import FolderActionPopUp from "./FolderActionPopUp";
+import "../css-styles/MainContent.css";
 
-export default function Folder({
+export default function MainContent({
   folders,
   setFolders,
   modelAction,
@@ -50,9 +51,11 @@ export default function Folder({
       isSelectd: true,
     });
   };
+
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(folders));
-  }, [folders,handleRenameFolder]);
+  }, [folders, handleRenameFolder]);
+
   return (
     <>
       <div className="folders">
@@ -75,7 +78,7 @@ export default function Folder({
         ))}
       </div>
 
-      {modelAction.action==="rename" && (
+      {modelAction.action === "rename" && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
             return (
@@ -96,7 +99,7 @@ export default function Folder({
       )}
 
       {modelAction.folderId && (
-        <FolderClickpop
+        <FolderActionPopUp
           trigger={trigger}
           setModelAction={setModelAction}
           handleDeleteFolder={handleDeleteFolder}

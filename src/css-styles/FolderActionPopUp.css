@@ -15,25 +15,31 @@
   max-width: 640px;
   background-color: #fff;
 }
-.folder-input {
+.open {
   margin-bottom: 10px;
 }
-.cancel-button {
-  background-color: red;
-  color: #fff;
-  margin-right: 10px;
+.del {
+  margin-bottom: 10px;
 }
-
-.cancel-button:hover {
-  text-decoration: underline;
+.rename {
+  margin-bottom: 10px;
+}
+.cancel {
+  margin-bottom: 10px;
+}
+.del:hover {
   cursor: pointer;
-}
-
-.create-button {
-  background-color: green;
-  color: #fff;
-}
-.create-button:hover {
   text-decoration: underline;
+}
+.rename:hover {
   cursor: pointer;
+  text-decoration: underline;
+}
+.cancel:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.open:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Folder from "./Folder";
-import Sidebar from "./sidebar";
-import "../css-styles/Dashboard.css"
+import MainContent from "./MainContent";
+import SideBar from "./SideBar";
 
 const Dashboard = () => {
   const [folders, setFolders] = useState(
@@ -23,20 +22,22 @@ const Dashboard = () => {
   }, [folders]);
 
   return (
+    // <SetModelActionContext.Provider value={setModelAction}>
     <>
-      <Folder
+      {/* uesContext for most used props */}
+      <SideBar
+        setFolders={setFolders}
+        setModelAction={setModelAction}
+        modelAction={modelAction}
+      />
+      <MainContent
         folders={folders}
         setFolders={setFolders}
         modelAction={modelAction}
         setModelAction={setModelAction}
       />
 
-      <Sidebar
-          setFolders={setFolders}
-          setModelAction={setModelAction}
-          modelAction={modelAction}
-
-      />
+      {/* </SetModelActionContext.Provider> */}
     </>
   );
 };
