@@ -26,6 +26,7 @@ export default function OpenFolder() {
 
   return (
     <>
+     
       <div className="files">
         {files.map((file) => {
           if (file.folderId === Number(folderId)) {

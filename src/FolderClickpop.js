@@ -9,6 +9,8 @@ const FolderClickpop = ({
   handleCancel,
   handleOpenFolder,
   trigger,
+  
+ 
 }) => {
   return trigger ? (
     <div className="popup">
@@ -34,7 +36,8 @@ const FolderClickpop = ({
         <div
           className="rename"
           onClick={() => {
-            handleRenameFolder(folderId, folderName);
+             handleRenameFolder(folderId,folderName)
+            // handleSubmit(folderId,folderName);
           }}
         >
           Rename

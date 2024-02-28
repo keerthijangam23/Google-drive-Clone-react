@@ -17,9 +17,7 @@ const Dashboard = () => {
     isSelected: false,
   });
 
-  const handleNewButtonClick = () => {
-    setModelAction({ action: "create", folderId: null });
-  };
+
 
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(folders));
@@ -34,7 +32,12 @@ const Dashboard = () => {
         setModelAction={setModelAction}
       />
 
-      <Sidebar handleNewButtonClick={handleNewButtonClick} />
+      <Sidebar
+          setFolders={setFolders}
+          setModelAction={setModelAction}
+          modelAction={modelAction}
+
+      />
     </>
   );
 };

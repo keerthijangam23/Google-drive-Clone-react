@@ -4,21 +4,15 @@ import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop";
 import FolderClickpop from "./FolderClickpop";
 
-export default function Folder({ folders,setFolders,modelAction, setModelAction }) {
-  const navigate = useNavigate(); 
+export default function Folder({
+  folders,
+  setFolders,
+  modelAction,
+  setModelAction,
+}) {
+  const navigate = useNavigate();
   const [trigger, setTrigger] = useState(true);
 
-  const handleFolderCreation = (message) => {
-    if (message !== "") {
-      setFolders((prevFolders) => [
-        ...prevFolders,
-        { id: prevFolders.length + 1, name: message },
-      ]);
-
-      setModelAction({ action: null, folderId: null });
-    } else alert("Folder name can not be empty");
-  };
-  
   const handleDeleteFolder = (folderId) => {
     setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.id !== folderId)
@@ -39,6 +33,7 @@ export default function Folder({ folders,setFolders,modelAction, setModelAction 
         ? (folder.name = folderName)
         : (folder.name = folder.name);
     });
+
     setFolders(folders);
   };
 
@@ -58,38 +53,38 @@ export default function Folder({ folders,setFolders,modelAction, setModelAction 
 
   return (
     <>
-    <div className="folders">
-      {folders.map((val) => (
-        <div
-          className="folder-container"
-          key={val.id}
-          onClick={() =>
-            setModelAction({
-              action: null,
-              folderId: val.id,
-              folderName: val.name,
-              // isSelected: false,
-            })
-          }
-        >
-          <FcOpenedFolder size={65} />
-          <div className="folder-name">{val.name}</div>
-        </div>
-      ))}
-    </div>
+      <div className="folders">
+        {folders.map((val) => (
+          <div
+            className="folder-container"
+            key={val.id}
+            onClick={() =>
+              setModelAction({
+                action: null,
+                folderId: val.id,
+                folderName: val.name,
+                // isSelected: false,
+              })
+            }
+          >
+            <FcOpenedFolder size={65} />
+            <div className="folder-name">{val.name}</div>
+          </div>
+        ))}
+      </div>
 
-    {modelAction.action && (
+      {modelAction.action==="rename" && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
-            return modelAction.action === "create"
-              ? handleFolderCreation(name)
-              : modelAction.folderName &&
-                  (handleRenameFolder(id, name),
-                  setModelAction({
-                    action: null,
-                    folderId: null,
-                    folderName: null,
-                  }));
+            return (
+              modelAction.folderId &&
+              (handleRenameFolder(id, name),
+              setModelAction({
+                action: null,
+                folderId: null,
+                folderName: null,
+              }))
+            );
           }}
           handleClose={() => {
             setModelAction({ action: null, folderId: null });
@@ -108,7 +103,6 @@ export default function Folder({ folders,setFolders,modelAction, setModelAction 
           handleRenameFolder={handleRenameFolder}
           handleCancel={handleCancel}
           handleOpenFolder={handleOpenFolder}
-          
         />
       )}
     </>
