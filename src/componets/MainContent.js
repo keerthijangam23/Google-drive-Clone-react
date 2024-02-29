@@ -17,6 +17,7 @@ export default function MainContent() {
     setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.id !== folderId)
     );
+
     setModelAction({
       action: null,
       folderId: null,

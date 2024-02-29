@@ -2,22 +2,23 @@ import React from "react";
 import "../css-styles/SideBar.css";
 import ModelPopup from "./ModelPop";
 import { FoldersContext, ModelActionContext } from "./Dashboard";
-import { useContext } from "react";
+import { useContext} from "react";
 
 const SideBar = () => {
   const { folders, setFolders } = useContext(FoldersContext);
 
   const { modelAction, setModelAction } = useContext(ModelActionContext);
+ 
 
   const handleNewButtonClick = () => {
     setModelAction({ action: "create", folderId: null });
   };
 
-  const handleFolderCreation = (message) => {
+  const handleFolderCreation = (id,message) => {
     if (message !== "") {
       setFolders((prevFolders) => [
         ...prevFolders,
-        { id: prevFolders.length + 1, name: message },
+        { id: prevFolders.length+1, name: message },
       ]);
 
       setModelAction({ action: null, folderId: null });
@@ -34,7 +35,7 @@ const SideBar = () => {
       {modelAction.action === "create" && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
-            return handleFolderCreation(name);
+             handleFolderCreation(id,name);
           }}
           handleClose={() => {
             setModelAction({ action: null, folderId: null });

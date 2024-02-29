@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useId} from "react";
 import "../css-styles/ModelPop.css";
 export default function ModelPopup({
   handleSubmit,
@@ -28,7 +28,7 @@ export default function ModelPopup({
           <button
             className="create-button"
             onClick={() => {
-              handleSubmit({ id: id, name: folderName });
+              handleSubmit({ id: id,name: folderName });
             }}
           >
             {nameValue ? "Rename" : "Create"}
