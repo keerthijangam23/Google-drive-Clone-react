@@ -8,13 +8,13 @@ const FolderActionPopUp = ({
   handleRenameFolder,
   handleCancel,
   handleOpenFolder,
-  trigger,
+  isOpen,
 }) => {
-  const modelActionContext = useContext(ModelActionContext);
-  const folderId = modelActionContext.modelAction.folderId;
-  const folderName = modelActionContext.modelAction.folderName;
+  const {modelAction} = useContext(ModelActionContext);
+  const folderId = modelAction.folderId;
+  const folderName = modelAction.folderName;
 
-  return trigger ? (
+  return isOpen ? (
     <div className="popup">
       <div className="popup-inner">
         <div

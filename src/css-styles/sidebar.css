@@ -2,12 +2,13 @@
 .side {
     margin-top: 100px;
     margin-left: 50px;
+
   }
   .new-button {
     width: 50px;
     background-color: bisque;
     border-color: azure;
-    margin-left: 75px;
+    margin-left: -55px;
   }
   .new-button:hover {
     text-decoration: underline;
@@ -16,6 +17,7 @@
   .drive-image {
     width: 60px;
     height: 60px;
-    margin-left: 70px;
+    /* margin-left: 70px; */
+    margin-bottom: 20px;
   }
   

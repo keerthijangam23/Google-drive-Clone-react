@@ -26,14 +26,12 @@ const Dashboard = () => {
   }, [folders]);
 
   return (
-    <>
       <FoldersContext.Provider value={{ folders, setFolders }}>
         <ModelActionContext.Provider value={{ modelAction, setModelAction }}>
           <SideBar />
           <MainContent />
         </ModelActionContext.Provider>
       </FoldersContext.Provider>
-    </>
   );
 };
 

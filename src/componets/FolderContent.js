@@ -23,21 +23,17 @@ export default function FolderContent() {
   }, [files]);
 
   return (
-    <>
       <div className="files">
         {files.map((file) => {
           if (file.folderId === Number(folderId)) {
             return (
-              <>
                 <div key={file.id} className="files-container">
                   <FaFileAlt className="file" size={65} />
                   <div className="file-name">{file.name}</div>
                 </div>
-              </>
             );
           }
         })}
       </div>
-    </>
   );
 }

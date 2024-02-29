@@ -5,44 +5,43 @@ import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 
 const SideBar = () => {
-  const foldersContext = useContext(FoldersContext);
+  const {folders,setFolders} = useContext(FoldersContext);
 
-  const modelActionContext = useContext(ModelActionContext);
+  const {modelAction,setModelAction} = useContext(ModelActionContext);
 
   const handleNewButtonClick = () => {
-    modelActionContext.setModelAction({ action: "create", folderId: null });
+    setModelAction({ action: "create", folderId: null });
   };
 
   const handleFolderCreation = (message) => {
     if (message !== "") {
-      foldersContext.setFolders((prevFolders) => [
+      setFolders((prevFolders) => [
         ...prevFolders,
         { id: prevFolders.length + 1, name: message },
       ]);
 
-      modelActionContext.setModelAction({ action: null, folderId: null });
+      setModelAction({ action: null, folderId: null });
     } else alert("Folder name can not be empty");
   };
   return (
     <>
       <div className="side">
         <img className="drive-image" src="./Images/drivePic.jpg" />
-        <br />
         <button className="new-button" onClick={() => handleNewButtonClick()}>
           New
         </button>
       </div>
-      {modelActionContext.modelAction.action === "create" && (
+      {modelAction.action === "create" && (
         <ModelPopup
           handleSubmit={({ id, name }) => {
             return handleFolderCreation(name);
           }}
           handleClose={() => {
-            modelActionContext.setModelAction({ action: null, folderId: null });
+            setModelAction({ action: null, folderId: null });
           }}
           val={{
-            id: modelActionContext.modelAction.folderId,
-            name: modelActionContext.modelAction.folderName,
+            id: modelAction.folderId,
+            name: modelAction.folderName,
           }}
         />
       )}

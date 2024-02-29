@@ -7,7 +7,7 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
     <div className="popup">
       <div className="popup-inner">
         <h2>{val.name ? "Rename" : "Create"}</h2>
-        <br />
+      
         <input
           className="folder-input"
           type="text"
@@ -17,7 +17,7 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
           value={folderName}
         />
         <div className="folder-buttons-container">
-          <button className="cancel-button" onClick={() => handleClose()}>
+          <button className="cancel-button" onClick={ handleClose}>
             Cancel
           </button>
           <button
