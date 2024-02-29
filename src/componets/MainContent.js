@@ -11,6 +11,7 @@ export default function MainContent() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
   const { folders, setFolders } = useContext(FoldersContext);
+  
   const { modelAction, setModelAction } = useContext(ModelActionContext);
 
   const handleDeleteFolder = (folderId) => {
