@@ -22,7 +22,7 @@ export default function ModelPopup({ handleSubmit, handleClose, val }) {
           </button>
           <button
             className="create-button"
-            onClick={(e) => {
+            onClick={() => {
               handleSubmit({ id: val.id, name: folderName });
             }}
           >
