@@ -100,10 +100,8 @@ export default function MainContent() {
           handleClose={() => {
             setModelAction({ action: null, folderId: null });
           }}
-          val={{
-            id: modelAction.folderId,
-            name: modelAction.folderName,
-          }}
+          id={modelAction.folderId}
+          nameValue={modelAction.folderName}
         />
       )}
 

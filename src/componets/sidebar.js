@@ -5,9 +5,9 @@ import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 
 const SideBar = () => {
-  const {folders,setFolders} = useContext(FoldersContext);
+  const { folders, setFolders } = useContext(FoldersContext);
 
-  const {modelAction,setModelAction} = useContext(ModelActionContext);
+  const { modelAction, setModelAction } = useContext(ModelActionContext);
 
   const handleNewButtonClick = () => {
     setModelAction({ action: "create", folderId: null });
@@ -39,10 +39,8 @@ const SideBar = () => {
           handleClose={() => {
             setModelAction({ action: null, folderId: null });
           }}
-          val={{
-            id: modelAction.folderId,
-            name: modelAction.folderName,
-          }}
+          id={modelAction.folderId}
+          nameValue={modelAction.folderName}
         />
       )}
     </>
