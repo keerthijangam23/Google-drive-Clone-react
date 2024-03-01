@@ -3,11 +3,14 @@ import "../css-styles/SideBar.css";
 import ModelPopup from "./ModelPop";
 import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext} from "react";
+import { v4 as uuid } from "uuid";
 
 const SideBar = () => {
   const { folders, setFolders } = useContext(FoldersContext);
 
   const { modelAction, setModelAction } = useContext(ModelActionContext);
+  const unique_id = uuid();
+  const small_id = unique_id.slice(0, 3);
  
 
   const handleNewButtonClick = () => {
@@ -18,7 +21,7 @@ const SideBar = () => {
     if (message !== "") {
       setFolders((prevFolders) => [
         ...prevFolders,
-        { id: prevFolders.length+1, name: message },
+        { id: small_id, name: message },
       ]);
 
       setModelAction({ action: null, folderId: null });

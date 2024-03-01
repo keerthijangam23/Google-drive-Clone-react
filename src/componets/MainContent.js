@@ -7,6 +7,7 @@ import "../css-styles/MainContent.css";
 import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 
+
 export default function MainContent() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
