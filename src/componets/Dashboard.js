@@ -9,8 +9,7 @@ export const ModelActionContext = createContext();
 
 const Dashboard = () => {
   const [folders, setFolders] = useState(
-     JSON.parse(localStorage.getItem("folders")) ||
-     [
+    JSON.parse(localStorage.getItem("folders")) || [
       { id: 1, name: "folder1" },
       { id: 2, name: "folder2" },
     ]
