@@ -1,7 +1,11 @@
 .folders {
-  margin-left: 600px;
+  margin-left: 0px;
   display: flex;
-  margin-top: -90px;
+  margin-top: 0px;
+  border:1px solid black;
+  width:1000px;
+  background-color: aliceblue;
+
 }
 .folder-container {
   margin: 30px;

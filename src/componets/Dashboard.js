@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MainContent from "./MainContent";
 import SideBar from "./SideBar";
 import { createContext } from "react";
+import "../css-styles/Dashboard.css"
 
 export const FoldersContext = createContext();
 export const ModelActionContext = createContext();
@@ -22,12 +23,14 @@ const Dashboard = () => {
   });
 
   return (
+    <div className="dashboard">
     <FoldersContext.Provider value={{ folders, setFolders }}>
       <ModelActionContext.Provider value={{ modelAction, setModelAction }}>
         <SideBar />
         <MainContent />
       </ModelActionContext.Provider>
     </FoldersContext.Provider>
+    </div>
   );
 };
 
