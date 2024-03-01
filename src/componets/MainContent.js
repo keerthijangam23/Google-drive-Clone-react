@@ -6,13 +6,13 @@ import FolderActionPopUp from "./FolderActionPopUp";
 import "../css-styles/MainContent.css";
 import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
-
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 export default function MainContent() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
   const { folders, setFolders } = useContext(FoldersContext);
-  
+
   const { modelAction, setModelAction } = useContext(ModelActionContext);
 
   const handleDeleteFolder = (folderId) => {
@@ -89,7 +89,10 @@ export default function MainContent() {
               })
             }
           >
-            <FcOpenedFolder size={65} />
+            <div className="folder-dot-icon">
+            <FcOpenedFolder size={40} />
+            <MoreVertIcon style={{height:"20px",width:"20px"}}/>
+            </div>
             <div className="folder-name">{val.name}</div>
           </div>
         ))}

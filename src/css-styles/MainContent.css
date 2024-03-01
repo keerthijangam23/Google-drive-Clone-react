@@ -5,6 +5,10 @@
   width: 1000px;
   background-color: aliceblue;
 }
+.folder-dot-icon {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
 .folder-container {
   margin: 30px;
   gap: 50px;
