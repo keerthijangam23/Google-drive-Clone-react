@@ -1,14 +1,13 @@
 .folders {
-  margin-left: 0px;
-  display: flex;
-  margin-top: 0px;
-  /* border:1px solid black; */
-  width:1000px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 150px 150px 150px;
+  width: 1000px;
   background-color: aliceblue;
-
 }
 .folder-container {
   margin: 30px;
+  gap: 50px;
 }
 .folder-name {
   width: 50px;
