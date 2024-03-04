@@ -80,18 +80,18 @@ export default function MainContent() {
           <div
             className="folder-container"
             key={val.id}
-            onClick={() =>
+            
+          >
+            <div className="folder-dot-icon">
+            <FcOpenedFolder size={40} />
+            <MoreVertIcon onClick={() =>
               setModelAction({
                 action: null,
                 folderId: val.id,
                 folderName: val.name,
                 // isSelected: false,
               })
-            }
-          >
-            <div className="folder-dot-icon">
-            <FcOpenedFolder size={40} />
-            <MoreVertIcon style={{height:"20px",width:"20px"}}/>
+            } style={{height:"20px",width:"20px"}}/>
             </div>
             <div className="folder-name">{val.name}</div>
           </div>
