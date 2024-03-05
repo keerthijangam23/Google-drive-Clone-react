@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop.tsx";
@@ -7,17 +8,22 @@ import "../css-styles/MainContent.css";
 import { FoldersContext, ModelActionContext } from "./Dashboard.tsx";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { FoldersType } from "./Dashboard.tsx";
+import { folderContextData, modelActionContext } from "./Dashboard.tsx";
 
-export default function MainContent() {
+const MainContent: React.FC = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(true);
-  const { folders, setFolders } = useContext(FoldersContext);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const { folders, setFolders } = useContext<folderContextData>(FoldersContext);
 
-  const { modelAction, setModelAction } = useContext(ModelActionContext);
+  const { modelAction, setModelAction } =
+    useContext<modelActionContext>(ModelActionContext);
 
-  const handleDeleteFolder = (folderId) => {
-    setFolders((prevFolders) =>
-      prevFolders.filter((folder) => folder.id !== folderId)
+  const handleDeleteFolder = (folderId: number | string | null) => {
+    setFolders((prevFolders: FoldersType[]) =>
+      prevFolders.filter(
+        (folder: { id: number | string; name: string }) => folder.id !== folderId
+      )
     );
 
     setModelAction({
@@ -27,7 +33,10 @@ export default function MainContent() {
     });
   };
 
-  const handleRenameFolder = (folderId, folderName) => {
+  const handleRenameFolder = (
+    folderId: number | string | null,
+    folderName: string | null
+  ) => {
     setIsOpen(false);
     setModelAction({
       action: "rename",
@@ -35,7 +44,7 @@ export default function MainContent() {
       folderName: folderName,
     });
     if (folderName !== "") {
-      folders.map((folder) => {
+      folders.map((folder: { id: number | string; name: string | null }) => {
         folder.id === folderId
           ? (folder.name = folderName)
           : (folder.name = folder.name);
@@ -46,19 +55,21 @@ export default function MainContent() {
   };
 
   const handleCancel = () => {
-    setModelAction({ action: null, folderId: null });
+    setModelAction({ action: null, folderId: null, folderName: null });
   };
 
-  const handleOpenFolder = (folderId, folderName) => {
+  const handleOpenFolder = (
+    folderId: number | string | null,
+    folderName: string | null
+  ) => {
     navigate(`/folder/${folderId}`);
     setModelAction({
       action: null,
       folderId: folderId,
       folderName: folderName,
-      isSelectd: true,
     });
   };
-  const handleSubmitInside = (id, name) => {
+  const handleSubmitInside = (id: number, name: string) => {
     return (
       modelAction.folderId &&
       (handleRenameFolder(id, name),
@@ -76,22 +87,20 @@ export default function MainContent() {
   return (
     <>
       <div className="folders">
-        {folders.map((val) => (
-          <div
-            className="folder-container"
-            key={val.id}
-            
-          >
+        {folders.map((val: { id: number | string; name: string }) => (
+          <div className="folder-container" key={val.id}>
             <div className="folder-dot-icon">
-            <FcOpenedFolder size={40} />
-            <MoreVertIcon onClick={() =>
-              setModelAction({
-                action: null,
-                folderId: val.id,
-                folderName: val.name,
-                // isSelected: false,
-              })
-            } style={{height:"20px",width:"20px"}}/>
+              <FcOpenedFolder size={40} />
+              <MoreVertIcon
+                onClick={() =>
+                  setModelAction({
+                    action: null,
+                    folderId: val.id,
+                    folderName: val.name,
+                  })
+                }
+                style={{ height: "20px", width: "20px" }}
+              />
             </div>
             <div className="folder-name">{val.name}</div>
           </div>
@@ -104,7 +113,7 @@ export default function MainContent() {
             handleSubmitInside(id, name);
           }}
           handleClose={() => {
-            setModelAction({ action: null, folderId: null });
+            setModelAction({ action: null, folderId: null, folderName: null });
           }}
           id={modelAction.folderId}
           nameValue={modelAction.folderName}
@@ -122,4 +131,5 @@ export default function MainContent() {
       )}
     </>
   );
-}
+};
+export default MainContent;
