@@ -1,6 +1,6 @@
 import React from "react";
 import "../css-styles/FolderActionPopUp.css";
-import { ModelActionContext } from "./Dashboard";
+import { ModelActionContext } from "./Dashboard.tsx";
 import { useContext } from "react";
 
 const FolderActionPopUp = ({

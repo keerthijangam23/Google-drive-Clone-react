@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import MainContent from "./MainContent";
-import SideBar from "./SideBar";
+import MainContent from "./MainContent.tsx";
+import SideBar from "./SideBar.tsx";
 import { createContext } from "react";
 import "../css-styles/Dashboard.css"
 

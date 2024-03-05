@@ -1,7 +1,7 @@
 import React from "react";
 import "../css-styles/SideBar.css";
-import ModelPopup from "./ModelPop";
-import { FoldersContext, ModelActionContext } from "./Dashboard";
+import ModelPopup from "./ModelPop.tsx";
+import { FoldersContext, ModelActionContext } from "./Dashboard.tsx";
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import Button from "@mui/material/Button";

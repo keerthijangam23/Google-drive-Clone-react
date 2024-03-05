@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import ModelPopup from "./ModelPop";
-import FolderActionPopUp from "./FolderActionPopUp";
+import ModelPopup from "./ModelPop.tsx";
+import FolderActionPopUp from "./FolderActionPopUp.tsx";
 import "../css-styles/MainContent.css";
-import { FoldersContext, ModelActionContext } from "./Dashboard";
+import { FoldersContext, ModelActionContext } from "./Dashboard.tsx";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
