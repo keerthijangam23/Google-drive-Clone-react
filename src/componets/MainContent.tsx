@@ -11,11 +11,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { FoldersType } from "./Dashboard";
 import { folderContextData, modelActionContext } from "./Dashboard";
 
-
- export type HandleSubmitType = {
-  id:number;
-  name:string;
-}
+export type HandleSubmitType = {
+  id: number;
+  name: string;
+};
 const MainContent = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(true);
@@ -24,7 +23,7 @@ const MainContent = () => {
   const { modelAction, setModelAction } =
     useContext<modelActionContext>(ModelActionContext);
 
-  const handleDeleteFolder = (folderId: number ) => {
+  const handleDeleteFolder = (folderId: number) => {
     setFolders((prevFolders: FoldersType[]) =>
       prevFolders.filter(
         (folder: { id: number; name: string }) => folder.id !== folderId
@@ -32,16 +31,13 @@ const MainContent = () => {
     );
 
     setModelAction({
-      action: '',
+      action: "",
       folderId: 0,
-      folderName: '',
+      folderName: "",
     });
   };
 
-  const handleRenameFolder = (
-    folderId: number ,
-    folderName: string,
-  ) => {
+  const handleRenameFolder = (folderId: number, folderName: string) => {
     setIsOpen(false);
     setModelAction({
       action: "rename",
@@ -49,7 +45,7 @@ const MainContent = () => {
       folderName: folderName,
     });
     if (folderName !== "") {
-      folders.map((folder: { id: number ; name: string  }) => {
+      folders.map((folder: { id: number; name: string }) => {
         folder.id === folderId
           ? (folder.name = folderName)
           : (folder.name = folder.name);
@@ -60,16 +56,13 @@ const MainContent = () => {
   };
 
   const handleCancel = () => {
-    setModelAction({ action: '', folderId: 0, folderName: '' });
+    setModelAction({ action: "", folderId: 0, folderName: "" });
   };
 
-  const handleOpenFolder = (
-    folderId: number ,
-    folderName: string,
-  ) => {
+  const handleOpenFolder = (folderId: number, folderName: string) => {
     navigate(`/folder/${folderId}`);
     setModelAction({
-      action: '',
+      action: "",
       folderId: folderId,
       folderName: folderName,
     });
@@ -79,9 +72,9 @@ const MainContent = () => {
       modelAction.folderId &&
       (handleRenameFolder(id, name),
       setModelAction({
-        action: '',
+        action: "",
         folderId: 0,
-        folderName: '',
+        folderName: "",
       }))
     );
   };
@@ -92,14 +85,14 @@ const MainContent = () => {
   return (
     <>
       <div className="folders">
-        {folders.map((val: { id: number ; name: string }) => (
+        {folders.map((val: { id: number; name: string }) => (
           <div className="folder-container" key={val.id}>
             <div className="folder-dot-icon">
               <FcOpenedFolder size={40} />
               <MoreVertIcon
                 onClick={() =>
                   setModelAction({
-                    action: '',
+                    action: "",
                     folderId: val.id,
                     folderName: val.name,
                   })
@@ -107,6 +100,7 @@ const MainContent = () => {
                 style={{ height: "20px", width: "20px" }}
               />
             </div>
+
             <div className="folder-name">{val.name}</div>
           </div>
         ))}
@@ -114,18 +108,18 @@ const MainContent = () => {
 
       {modelAction.action === "rename" && (
         <ModelPopup
-          handleSubmit={({ id, name}:HandleSubmitType):void=> {
+          handleSubmit={({ id, name }: HandleSubmitType): void => {
             handleSubmitInside(id, name);
           }}
-          handleClose={()=>{
-            setModelAction({ action: '', folderId: 0, folderName: '' });
+          handleClose={() => {
+            setModelAction({ action: "", folderId: 0, folderName: "" });
           }}
           idValue={modelAction.folderId}
           nameValue={modelAction.folderName}
         />
       )}
 
-      {modelAction.folderId && (
+      {modelAction.folderId !== 0 && (
         <FolderActionPopUp
           isOpen={isOpen}
           handleDeleteFolder={handleDeleteFolder}

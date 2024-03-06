@@ -14,7 +14,8 @@ export const Filesdata: FilesType[] = [
   { id: 2, name: "file1", folderId: 1 },
   { id: 3, name: "file2", folderId: 2 },
   { id: 4, name: "file1", folderId: 2 },
-  { id: 5, name: "file2", folderId: 2 },
+  { id: 5, name: "file2", folderId: 2 }
+ 
 ];
 export default function FolderContent() {
   const { folderId } = useParams();

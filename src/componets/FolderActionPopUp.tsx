@@ -5,16 +5,10 @@ import { useContext } from "react";
 
 export type FolderActionPopUpProps = {
   isOpen: boolean;
-  handleDeleteFolder: (folderId: number ) => void;
-  handleRenameFolder: (
-    folderId: number ,
-    folderName: string 
-  ) => void;
+  handleDeleteFolder: (folderId: number) => void;
+  handleRenameFolder: (folderId: number, folderName: string) => void;
   handleCancel: () => void;
-  handleOpenFolder: (
-    folderId: number ,
-    folderName: string
-  ) => void;
+  handleOpenFolder: (folderId: number, folderName: string) => void;
 };
 const FolderActionPopUp = ({
   isOpen,
@@ -24,7 +18,9 @@ const FolderActionPopUp = ({
   handleOpenFolder,
 }: FolderActionPopUpProps) => {
   const { modelAction } = useContext(ModelActionContext);
+
   const folderId = modelAction.folderId;
+
   const folderName = modelAction.folderName;
 
   return isOpen ? (

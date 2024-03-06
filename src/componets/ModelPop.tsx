@@ -4,16 +4,16 @@ import "../css-styles/ModelPop.css";
 import { HandleSubmitType } from "./MainContent";
 
 type ModelPopupProps = {
-  handleSubmit: ({id , name}:HandleSubmitType) => void;
+  idValue: number;
+  nameValue: string;
+  handleSubmit: ({ id, name }: HandleSubmitType) => void;
   handleClose: () => void;
-  idValue: number ;
-  nameValue: string ;
 };
-const ModelPopup= ({
-  handleSubmit,
-  handleClose,
+const ModelPopup = ({
   idValue,
   nameValue,
+  handleSubmit,
+  handleClose,
 }: ModelPopupProps) => {
   let name = nameValue ? nameValue : "Untitled folder";
   const [folderName, setFolderName] = useState(name);

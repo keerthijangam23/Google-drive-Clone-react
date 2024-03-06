@@ -9,30 +9,28 @@ import {
   modelActionContext,
 } from "./Dashboard";
 import { useContext } from "react";
-import { v4 as uuid } from "uuid";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { HandleSubmitType } from "./MainContent";
 
-const SideBar: React.FC  = () => {
+const SideBar = () => {
   const { folders, setFolders } = useContext<folderContextData>(FoldersContext);
 
-  const { modelAction, setModelAction } = useContext<modelActionContext>(ModelActionContext);
-  const unique_id = uuid();
-  const small_id = unique_id.slice(0, 3);
+  const { modelAction, setModelAction } =
+    useContext<modelActionContext>(ModelActionContext);
 
   const handleNewButtonClick = () => {
-    setModelAction({ action: "create", folderId: 0, folderName: '' });
+    setModelAction({ action: "create", folderId: 0, folderName: "" });
   };
 
   const handleFolderCreation = (id: number, message: string) => {
     if (message !== "") {
-      setFolders((prevFolders):FoldersType[] => [
+      setFolders((prevFolders): FoldersType[] => [
         ...prevFolders,
-        { id: Number(small_id), name: message },
+        { id: Math.random(), name: message },
       ]);
 
-      setModelAction({ action: '', folderId: 0, folderName: '' });
+      setModelAction({ action: "", folderId: 0, folderName: "" });
     } else alert("Folder name can not be empty");
   };
   return (
@@ -54,14 +52,14 @@ const SideBar: React.FC  = () => {
       </div>
       {modelAction.action === "create" && (
         <ModelPopup
-          handleSubmit={({ id, name }:HandleSubmitType):void => {
+          idValue={modelAction.folderId}
+          nameValue={modelAction.folderName}
+          handleSubmit={({ id, name }: HandleSubmitType): void => {
             handleFolderCreation(id, name);
           }}
           handleClose={() => {
-            setModelAction({ action: '', folderId: 0,folderName:'' });
+            setModelAction({ action: "", folderId: 0, folderName: "" });
           }}
-          idValue={modelAction.folderId}
-          nameValue={modelAction.folderName}
         />
       )}
     </>

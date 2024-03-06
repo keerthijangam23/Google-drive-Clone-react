@@ -16,9 +16,9 @@ export type folderContextData = {
 };
 
 export type ModelActionType = {
-  action: string | null;
-  folderId: number ;
-  folderName: string ;
+  action: string;
+  folderId: number;
+  folderName: string;
 };
 
 export type modelActionContext = {
@@ -35,22 +35,22 @@ export const FoldersContext = createContext<folderContextData>({
 });
 export const ModelActionContext = createContext<modelActionContext>({
   modelAction: {
-    action:'',
+    action: "",
     folderId: 0,
-    folderName: '',
+    folderName: "",
   },
   setModelAction: () => {},
 });
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   const [folders, setFolders] = useState<FoldersType[]>(
     JSON.parse(localStorage.getItem("folders")!) || data
   );
 
   const [modelAction, setModelAction] = useState<ModelActionType>({
-    action: '',
+    action: "",
     folderId: 0,
-    folderName: '',
+    folderName: "",
   });
 
   return (
