@@ -1,19 +1,19 @@
 import React from "react";
 import "../css-styles/FolderActionPopUp.css";
-import { ModelActionContext } from "./Dashboard.tsx";
+import { ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 
 export type FolderActionPopUpProps = {
   isOpen: boolean;
-  handleDeleteFolder: (folderId: number | string | null) => void;
+  handleDeleteFolder: (folderId: number ) => void;
   handleRenameFolder: (
-    folderId: number | string | null,
-    folderName: string | null
+    folderId: number ,
+    folderName: string 
   ) => void;
   handleCancel: () => void;
   handleOpenFolder: (
-    folderId: number | string | null,
-    folderName: string | null
+    folderId: number ,
+    folderName: string
   ) => void;
 };
 const FolderActionPopUp = ({

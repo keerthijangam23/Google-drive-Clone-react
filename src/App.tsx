@@ -1,5 +1,5 @@
-import OpenFolder from "./componets/FolderContent.tsx";
-import Dashboard from "./componets/Dashboard.tsx";
+import OpenFolder from "./componets/FolderContent";
+import Dashboard from "./componets/Dashboard";
 import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";

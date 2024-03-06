@@ -1,12 +1,12 @@
 import { useState } from "react";
-import MainContent from "./MainContent.tsx";
-import SideBar from "./SideBar.tsx";
+import MainContent from "./MainContent";
+import SideBar from "./SideBar";
 import { createContext } from "react";
 import React from "react";
 import "../css-styles/Dashboard.css";
 
 export type FoldersType = {
-  id: number | string;
+  id: number;
   name: string;
 };
 
@@ -17,8 +17,8 @@ export type folderContextData = {
 
 export type ModelActionType = {
   action: string | null;
-  folderId: number | string | null;
-  folderName: string | null;
+  folderId: number ;
+  folderName: string ;
 };
 
 export type modelActionContext = {
@@ -35,9 +35,9 @@ export const FoldersContext = createContext<folderContextData>({
 });
 export const ModelActionContext = createContext<modelActionContext>({
   modelAction: {
-    action: null,
-    folderId: null,
-    folderName: null,
+    action:'',
+    folderId: 0,
+    folderName: '',
   },
   setModelAction: () => {},
 });
@@ -48,9 +48,9 @@ const Dashboard: React.FC = () => {
   );
 
   const [modelAction, setModelAction] = useState<ModelActionType>({
-    action: null,
-    folderId: null,
-    folderName: null,
+    action: '',
+    folderId: 0,
+    folderName: '',
   });
 
   return (

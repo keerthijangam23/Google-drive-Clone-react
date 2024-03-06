@@ -1,12 +1,20 @@
-import { useState} from "react";
+import { useState } from "react";
 import React from "react";
 import "../css-styles/ModelPop.css";
-export default function ModelPopup({
+import { HandleSubmitType } from "./MainContent";
+
+type ModelPopupProps = {
+  handleSubmit: ({id , name}:HandleSubmitType) => void;
+  handleClose: () => void;
+  idValue: number ;
+  nameValue: string ;
+};
+const ModelPopup= ({
   handleSubmit,
   handleClose,
-  id,
+  idValue,
   nameValue,
-}) {
+}: ModelPopupProps) => {
   let name = nameValue ? nameValue : "Untitled folder";
   const [folderName, setFolderName] = useState(name);
   return (
@@ -29,7 +37,7 @@ export default function ModelPopup({
           <button
             className="create-button"
             onClick={() => {
-              handleSubmit({ id: id,name: folderName });
+              handleSubmit({ id: idValue, name: folderName });
             }}
           >
             {nameValue ? "Rename" : "Create"}
@@ -38,4 +46,5 @@ export default function ModelPopup({
       </div>
     </div>
   );
-}
+};
+export default ModelPopup;

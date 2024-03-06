@@ -2,16 +2,21 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import ModelPopup from "./ModelPop.tsx";
-import FolderActionPopUp from "./FolderActionPopUp.tsx";
+import ModelPopup from "./ModelPop";
+import FolderActionPopUp from "./FolderActionPopUp";
 import "../css-styles/MainContent.css";
-import { FoldersContext, ModelActionContext } from "./Dashboard.tsx";
+import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { FoldersType } from "./Dashboard.tsx";
-import { folderContextData, modelActionContext } from "./Dashboard.tsx";
+import { FoldersType } from "./Dashboard";
+import { folderContextData, modelActionContext } from "./Dashboard";
 
-const MainContent: React.FC = () => {
+
+ export type HandleSubmitType = {
+  id:number;
+  name:string;
+}
+const MainContent = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const { folders, setFolders } = useContext<folderContextData>(FoldersContext);
@@ -19,23 +24,23 @@ const MainContent: React.FC = () => {
   const { modelAction, setModelAction } =
     useContext<modelActionContext>(ModelActionContext);
 
-  const handleDeleteFolder = (folderId: number | string | null) => {
+  const handleDeleteFolder = (folderId: number ) => {
     setFolders((prevFolders: FoldersType[]) =>
       prevFolders.filter(
-        (folder: { id: number | string; name: string }) => folder.id !== folderId
+        (folder: { id: number; name: string }) => folder.id !== folderId
       )
     );
 
     setModelAction({
-      action: null,
-      folderId: null,
-      folderName: null,
+      action: '',
+      folderId: 0,
+      folderName: '',
     });
   };
 
   const handleRenameFolder = (
-    folderId: number | string | null,
-    folderName: string | null
+    folderId: number ,
+    folderName: string,
   ) => {
     setIsOpen(false);
     setModelAction({
@@ -44,7 +49,7 @@ const MainContent: React.FC = () => {
       folderName: folderName,
     });
     if (folderName !== "") {
-      folders.map((folder: { id: number | string; name: string | null }) => {
+      folders.map((folder: { id: number ; name: string  }) => {
         folder.id === folderId
           ? (folder.name = folderName)
           : (folder.name = folder.name);
@@ -55,16 +60,16 @@ const MainContent: React.FC = () => {
   };
 
   const handleCancel = () => {
-    setModelAction({ action: null, folderId: null, folderName: null });
+    setModelAction({ action: '', folderId: 0, folderName: '' });
   };
 
   const handleOpenFolder = (
-    folderId: number | string | null,
-    folderName: string | null
+    folderId: number ,
+    folderName: string,
   ) => {
     navigate(`/folder/${folderId}`);
     setModelAction({
-      action: null,
+      action: '',
       folderId: folderId,
       folderName: folderName,
     });
@@ -74,9 +79,9 @@ const MainContent: React.FC = () => {
       modelAction.folderId &&
       (handleRenameFolder(id, name),
       setModelAction({
-        action: null,
-        folderId: null,
-        folderName: null,
+        action: '',
+        folderId: 0,
+        folderName: '',
       }))
     );
   };
@@ -87,14 +92,14 @@ const MainContent: React.FC = () => {
   return (
     <>
       <div className="folders">
-        {folders.map((val: { id: number | string; name: string }) => (
+        {folders.map((val: { id: number ; name: string }) => (
           <div className="folder-container" key={val.id}>
             <div className="folder-dot-icon">
               <FcOpenedFolder size={40} />
               <MoreVertIcon
                 onClick={() =>
                   setModelAction({
-                    action: null,
+                    action: '',
                     folderId: val.id,
                     folderName: val.name,
                   })
@@ -109,13 +114,13 @@ const MainContent: React.FC = () => {
 
       {modelAction.action === "rename" && (
         <ModelPopup
-          handleSubmit={({ id, name }) => {
+          handleSubmit={({ id, name}:HandleSubmitType):void=> {
             handleSubmitInside(id, name);
           }}
-          handleClose={() => {
-            setModelAction({ action: null, folderId: null, folderName: null });
+          handleClose={()=>{
+            setModelAction({ action: '', folderId: 0, folderName: '' });
           }}
-          id={modelAction.folderId}
+          idValue={modelAction.folderId}
           nameValue={modelAction.folderName}
         />
       )}
