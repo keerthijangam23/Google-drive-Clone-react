@@ -6,7 +6,7 @@ import React from "react";
 import "../css-styles/Dashboard.css";
 
 export type FoldersType = {
-  id: number;
+  id: string;
   name: string;
 };
 
@@ -17,7 +17,7 @@ export type folderContextData = {
 
 export type ModelActionType = {
   action: string;
-  folderId: number;
+  folderId: string;
   folderName: string;
 };
 
@@ -26,8 +26,8 @@ export type modelActionContext = {
   setModelAction: React.Dispatch<React.SetStateAction<ModelActionType>>;
 };
 export const data: FoldersType[] = [
-  { id: 1, name: "folder1" },
-  { id: 2, name: "folder2" },
+  { id: "1", name: "folder1" },
+  { id: "2", name: "folder2" },
 ];
 export const FoldersContext = createContext<folderContextData>({
   folders: data,
@@ -36,7 +36,7 @@ export const FoldersContext = createContext<folderContextData>({
 export const ModelActionContext = createContext<modelActionContext>({
   modelAction: {
     action: "",
-    folderId: 0,
+    folderId: '',
     folderName: "",
   },
   setModelAction: () => {},
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   const [modelAction, setModelAction] = useState<ModelActionType>({
     action: "",
-    folderId: 0,
+    folderId: '',
     folderName: "",
   });
 

@@ -1,6 +1,7 @@
 import React from "react";
 import "../css-styles/SideBar.css";
 import ModelPopup from "./ModelPop";
+import { v4 as uuid } from "uuid";
 import {
   FoldersContext,
   FoldersType,
@@ -18,19 +19,21 @@ const SideBar = () => {
 
   const { modelAction, setModelAction } =
     useContext<modelActionContext>(ModelActionContext);
+    const unique_id = uuid();
+    const small_id = unique_id.slice(0, 4);
 
   const handleNewButtonClick = () => {
-    setModelAction({ action: "create", folderId: 0, folderName: "" });
+    setModelAction({ action: "create", folderId: '', folderName: "" });
   };
 
-  const handleFolderCreation = (id: number, message: string) => {
+  const handleFolderCreation = (id: string, message: string) => {
     if (message !== "") {
       setFolders((prevFolders): FoldersType[] => [
         ...prevFolders,
-        { id: Math.random(), name: message },
+        { id: small_id, name: message },
       ]);
 
-      setModelAction({ action: "", folderId: 0, folderName: "" });
+      setModelAction({ action: "", folderId: '', folderName: "" });
     } else alert("Folder name can not be empty");
   };
   return (
@@ -58,7 +61,7 @@ const SideBar = () => {
             handleFolderCreation(id, name);
           }}
           handleClose={() => {
-            setModelAction({ action: "", folderId: 0, folderName: "" });
+            setModelAction({ action: "", folderId: '', folderName: "" });
           }}
         />
       )}

@@ -4,7 +4,7 @@ import "../css-styles/ModelPop.css";
 import { HandleSubmitType } from "./MainContent";
 
 type ModelPopupProps = {
-  idValue: number;
+  idValue: string;
   nameValue: string;
   handleSubmit: ({ id, name }: HandleSubmitType) => void;
   handleClose: () => void;

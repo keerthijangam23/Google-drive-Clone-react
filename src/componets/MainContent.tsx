@@ -12,7 +12,7 @@ import { FoldersType } from "./Dashboard";
 import { folderContextData, modelActionContext } from "./Dashboard";
 
 export type HandleSubmitType = {
-  id: number;
+  id: string;
   name: string;
 };
 const MainContent = () => {
@@ -23,21 +23,21 @@ const MainContent = () => {
   const { modelAction, setModelAction } =
     useContext<modelActionContext>(ModelActionContext);
 
-  const handleDeleteFolder = (folderId: number) => {
+  const handleDeleteFolder = (folderId: string) => {
     setFolders((prevFolders: FoldersType[]) =>
       prevFolders.filter(
-        (folder: { id: number; name: string }) => folder.id !== folderId
+        (folder: { id: string; name: string }) => folder.id !== folderId
       )
     );
 
     setModelAction({
       action: "",
-      folderId: 0,
+      folderId: '',
       folderName: "",
     });
   };
 
-  const handleRenameFolder = (folderId: number, folderName: string) => {
+  const handleRenameFolder = (folderId: string, folderName: string) => {
     setIsOpen(false);
     setModelAction({
       action: "rename",
@@ -45,7 +45,7 @@ const MainContent = () => {
       folderName: folderName,
     });
     if (folderName !== "") {
-      folders.map((folder: { id: number; name: string }) => {
+      folders.map((folder: { id: string; name: string }) => {
         folder.id === folderId
           ? (folder.name = folderName)
           : (folder.name = folder.name);
@@ -56,10 +56,10 @@ const MainContent = () => {
   };
 
   const handleCancel = () => {
-    setModelAction({ action: "", folderId: 0, folderName: "" });
+    setModelAction({ action: "", folderId: '', folderName: "" });
   };
 
-  const handleOpenFolder = (folderId: number, folderName: string) => {
+  const handleOpenFolder = (folderId: string, folderName: string) => {
     navigate(`/folder/${folderId}`);
     setModelAction({
       action: "",
@@ -67,13 +67,13 @@ const MainContent = () => {
       folderName: folderName,
     });
   };
-  const handleSubmitInside = (id: number, name: string) => {
+  const handleSubmitInside = (id: string, name: string) => {
     return (
       modelAction.folderId &&
       (handleRenameFolder(id, name),
       setModelAction({
         action: "",
-        folderId: 0,
+        folderId: '',
         folderName: "",
       }))
     );
@@ -85,7 +85,7 @@ const MainContent = () => {
   return (
     <>
       <div className="folders">
-        {folders.map((val: { id: number; name: string }) => (
+        {folders.map((val: { id: string; name: string }) => (
           <div className="folder-container" key={val.id}>
             <div className="folder-dot-icon">
               <FcOpenedFolder size={40} />
@@ -112,14 +112,14 @@ const MainContent = () => {
             handleSubmitInside(id, name);
           }}
           handleClose={() => {
-            setModelAction({ action: "", folderId: 0, folderName: "" });
+            setModelAction({ action: "", folderId: '', folderName: "" });
           }}
           idValue={modelAction.folderId}
           nameValue={modelAction.folderName}
         />
       )}
 
-      {modelAction.folderId !== 0 && (
+      {modelAction.folderId !== '' && (
         <FolderActionPopUp
           isOpen={isOpen}
           handleDeleteFolder={handleDeleteFolder}
