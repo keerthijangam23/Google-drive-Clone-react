@@ -14,14 +14,14 @@ const SideBar = () => {
 
   const { modelAction, setModelAction } =
     useContext<ModelActionContextData>(ModelActionContext);
-    const unique_id = uuid();
-    const small_id = unique_id.slice(0, 4);
+    const unique_id:string = uuid();
+    const small_id:string = unique_id.slice(0, 4);
 
-  const handleNewButtonClick = () => {
+  const handleNewButtonClick = ():void => {
     setModelAction({ action: "create", folderId: '', folderName: "" });
   };
 
-  const handleFolderCreation = (id: string, message: string) => {
+  const handleFolderCreation = (id: string, message: string):void => {
     if (message !== "") {
       setFolders((prevFolders): Folder[] => [
         ...prevFolders,
