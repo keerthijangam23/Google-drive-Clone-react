@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import React from "react";
 import { FcOpenedFolder } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
@@ -85,7 +85,7 @@ const MainContent = () => {
   return (
     <>
       <div className="folders">
-        {folders.map((val: { id: string; name: string }) => (
+        {folders.map((val: { id: string; name: string }):ReactNode=> (
           <div className="folder-container" key={val.id}>
             <div className="folder-dot-icon">
               <FcOpenedFolder size={40} />
