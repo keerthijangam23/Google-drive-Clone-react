@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import "../css-styles/FolderContent.css";
 import { useParams } from "react-router-dom";
 
-export type FilesType = {
+export type File = {
   id: number;
   name: string;
   folderId: number;
 };
-export const Filesdata: FilesType[] = [
+export const Filesdata: File[] = [
   { id: 1, name: "file1", folderId: 1 },
   { id: 2, name: "file1", folderId: 1 },
   { id: 3, name: "file2", folderId: 2 },
@@ -29,7 +29,7 @@ export default function FolderContent() {
 
   return (
     <div className="files">
-      {files.map((file: FilesType) => {
+      {files.map((file: File) => {
         if (file.folderId === Number(folderId)) {
           return (
             <div key={file.id} className="files-container">

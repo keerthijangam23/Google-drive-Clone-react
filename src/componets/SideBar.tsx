@@ -4,7 +4,7 @@ import ModelPopup from "./ModelPop";
 import { v4 as uuid } from "uuid";
 import {
   FoldersContext,
-  FoldersType,
+  Folder,
   ModelActionContext,
   folderContextData,
   modelActionContext,
@@ -28,7 +28,7 @@ const SideBar = () => {
 
   const handleFolderCreation = (id: string, message: string) => {
     if (message !== "") {
-      setFolders((prevFolders): FoldersType[] => [
+      setFolders((prevFolders): Folder[] => [
         ...prevFolders,
         { id: small_id, name: message },
       ]);

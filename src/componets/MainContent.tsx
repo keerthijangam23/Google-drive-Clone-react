@@ -8,7 +8,7 @@ import "../css-styles/MainContent.css";
 import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { FoldersType } from "./Dashboard";
+import { Folder } from "./Dashboard";
 import { folderContextData, modelActionContext } from "./Dashboard";
 
 export type HandleSubmitType = {
@@ -24,7 +24,7 @@ const MainContent = () => {
     useContext<modelActionContext>(ModelActionContext);
 
   const handleDeleteFolder = (folderId: string) => {
-    setFolders((prevFolders: FoldersType[]) =>
+    setFolders((prevFolders: Folder[]) =>
       prevFolders.filter(
         (folder: { id: string; name: string }) => folder.id !== folderId
       )

@@ -5,14 +5,14 @@ import { createContext } from "react";
 import React from "react";
 import "../css-styles/Dashboard.css";
 
-export type FoldersType = {
+export type Folder= {
   id: string;
   name: string;
 };
 
 export type folderContextData = {
-  folders: FoldersType[];
-  setFolders: React.Dispatch<React.SetStateAction<FoldersType[]>>;
+  folders: Folder[];
+  setFolders: React.Dispatch<React.SetStateAction<Folder[]>>;
 };
 
 export type ModelActionType = {
@@ -25,7 +25,7 @@ export type modelActionContext = {
   modelAction: ModelActionType;
   setModelAction: React.Dispatch<React.SetStateAction<ModelActionType>>;
 };
-export const data: FoldersType[] = [
+export const data: Folder[] = [
   { id: "1", name: "folder1" },
   { id: "2", name: "folder2" },
 ];
@@ -43,7 +43,7 @@ export const ModelActionContext = createContext<modelActionContext>({
 });
 
 const Dashboard = () => {
-  const [folders, setFolders] = useState<FoldersType[]>(
+  const [folders, setFolders] = useState<Folder[]>(
     JSON.parse(localStorage.getItem("folders")!) || data
   );
 
