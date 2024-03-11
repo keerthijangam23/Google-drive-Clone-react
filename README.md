@@ -10,10 +10,11 @@ In the UI one drive image and some initial folders will displayed.
 
    UI Google drive.
 
-## Componets Folder, css-styles Folder
+## Componets Folder, css-styles Folder , types Folder
 
     all the components related data will be stored in componets Folder.
     all the components styles related data will be stored in css-styles Folder.
+    all the types related data will be stored in types Folder.
 
 ## When user clicks on "New" button
 
