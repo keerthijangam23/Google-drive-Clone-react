@@ -9,7 +9,7 @@ import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Folder } from "./Dashboard";
-import { folderContextData, modelActionContext } from "./Dashboard";
+import { FolderContextData, modelActionContext } from "./Dashboard";
 
 export type HandleSubmitType = {
   id: string;
@@ -18,7 +18,7 @@ export type HandleSubmitType = {
 const MainContent = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const { folders, setFolders } = useContext<folderContextData>(FoldersContext);
+  const { folders, setFolders } = useContext<FolderContextData>(FoldersContext);
 
   const { modelAction, setModelAction } =
     useContext<modelActionContext>(ModelActionContext);

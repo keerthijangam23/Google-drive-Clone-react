@@ -10,7 +10,7 @@ export type Folder= {
   name: string;
 };
 
-export type folderContextData = {
+export type FolderContextData = {
   folders: Folder[];
   setFolders: React.Dispatch<React.SetStateAction<Folder[]>>;
 };
@@ -29,7 +29,7 @@ export const data: Folder[] = [
   { id: "1", name: "folder1" },
   { id: "2", name: "folder2" },
 ];
-export const FoldersContext = createContext<folderContextData>({
+export const FoldersContext = createContext<FolderContextData>({
   folders: data,
   setFolders: () => {},
 });

@@ -6,7 +6,7 @@ import {
   FoldersContext,
   Folder,
   ModelActionContext,
-  folderContextData,
+  FolderContextData,
   modelActionContext,
 } from "./Dashboard";
 import { useContext } from "react";
@@ -15,7 +15,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { HandleSubmitType } from "./MainContent";
 
 const SideBar = () => {
-  const { folders, setFolders } = useContext<folderContextData>(FoldersContext);
+  const { folders, setFolders } = useContext<FolderContextData>(FoldersContext);
 
   const { modelAction, setModelAction } =
     useContext<modelActionContext>(ModelActionContext);

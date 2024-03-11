@@ -19,9 +19,9 @@ const FolderActionPopUp = ({
 }: FolderActionPopUpProps) => {
   const { modelAction } = useContext(ModelActionContext);
 
-  const folderId = modelAction.folderId;
+  const folderId:string = modelAction.folderId;
 
-  const folderName = modelAction.folderName;
+  const folderName:string = modelAction.folderName;
 
   return isOpen ? (
     <div className="popup">
