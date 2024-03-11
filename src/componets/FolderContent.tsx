@@ -18,7 +18,7 @@ export const Filesdata: File[] = [
  
 ];
 export default function FolderContent() {
-  const { folderId} = useParams();
+  const { folderId} = useParams<string>();
   const [files, setFiles] = useState<File[]>(
     JSON.parse(localStorage.getItem("files")!) || Filesdata
   );
