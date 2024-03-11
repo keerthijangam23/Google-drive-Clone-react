@@ -2,6 +2,7 @@ import React from "react";
 import "../css-styles/FolderActionPopUp.css";
 import { ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
+import { ModelActionContextData } from "./Dashboard";
 
 export type FolderActionPopUpProps = {
   isOpen: boolean;
@@ -17,7 +18,7 @@ const FolderActionPopUp = ({
   handleCancel,
   handleOpenFolder,
 }: FolderActionPopUpProps) => {
-  const { modelAction } = useContext(ModelActionContext);
+  const { modelAction } = useContext<ModelActionContextData>(ModelActionContext);
 
   const folderId:string = modelAction.folderId;
 

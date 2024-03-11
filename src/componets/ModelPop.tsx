@@ -15,8 +15,8 @@ const ModelPopup = ({
   handleSubmit,
   handleClose,
 }: ModelPopupProps) => {
-  let name = nameValue ? nameValue : "Untitled folder";
-  const [folderName, setFolderName] = useState(name);
+  let name:string = nameValue ? nameValue : "Untitled folder";
+  const [folderName, setFolderName] = useState<string>(name);
   return (
     <div className="popup">
       <div className="popup-inner">
