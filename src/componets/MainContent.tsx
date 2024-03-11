@@ -8,8 +8,7 @@ import "../css-styles/MainContent.css";
 import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Folder ,ModelAction} from "./Dashboard";
-import { FolderContextData, ModelActionContextData } from "./Dashboard";
+import {Folder,FolderContextData, ModelActionContextData, ModelAction} from "../types/DashboardCommonTypes";
 
 export type HandleSubmit = {
   id: string;

@@ -2,7 +2,7 @@ import React from "react";
 import "../css-styles/FolderActionPopUp.css";
 import { ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
-import { ModelActionContextData } from "./Dashboard";
+import { ModelActionContextData} from "../types/DashboardCommonTypes";
 
 export type FolderActionPopUpProps = {
   isOpen: boolean;
