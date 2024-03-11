@@ -8,10 +8,10 @@ import "../css-styles/MainContent.css";
 import { FoldersContext, ModelActionContext } from "./Dashboard";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Folder } from "./Dashboard";
-import { FolderContextData, modelActionContext } from "./Dashboard";
+import { Folder ,ModelAction} from "./Dashboard";
+import { FolderContextData, ModelActionContextData } from "./Dashboard";
 
-export type HandleSubmitType = {
+export type HandleSubmit = {
   id: string;
   name: string;
 };
@@ -21,7 +21,7 @@ const MainContent = () => {
   const { folders, setFolders } = useContext<FolderContextData>(FoldersContext);
 
   const { modelAction, setModelAction } =
-    useContext<modelActionContext>(ModelActionContext);
+    useContext<ModelActionContextData>(ModelActionContext);
 
   const handleDeleteFolder = (folderId: string) => {
     setFolders((prevFolders: Folder[]) =>
@@ -108,7 +108,7 @@ const MainContent = () => {
 
       {modelAction.action === "rename" && (
         <ModelPopup
-          handleSubmit={({ id, name }: HandleSubmitType): void => {
+          handleSubmit={({ id, name }: HandleSubmit): void => {
             handleSubmitInside(id, name);
           }}
           handleClose={() => {

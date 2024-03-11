@@ -7,18 +7,18 @@ import {
   Folder,
   ModelActionContext,
   FolderContextData,
-  modelActionContext,
+  ModelActionContextData,
 } from "./Dashboard";
 import { useContext } from "react";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import { HandleSubmitType } from "./MainContent";
+import { HandleSubmit } from "./MainContent";
 
 const SideBar = () => {
   const { folders, setFolders } = useContext<FolderContextData>(FoldersContext);
 
   const { modelAction, setModelAction } =
-    useContext<modelActionContext>(ModelActionContext);
+    useContext<ModelActionContextData>(ModelActionContext);
     const unique_id = uuid();
     const small_id = unique_id.slice(0, 4);
 
@@ -57,7 +57,7 @@ const SideBar = () => {
         <ModelPopup
           idValue={modelAction.folderId}
           nameValue={modelAction.folderName}
-          handleSubmit={({ id, name }: HandleSubmitType): void => {
+          handleSubmit={({ id, name }: HandleSubmit): void => {
             handleFolderCreation(id, name);
           }}
           handleClose={() => {

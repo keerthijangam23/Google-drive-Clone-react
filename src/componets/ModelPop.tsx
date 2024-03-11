@@ -1,12 +1,12 @@
 import { useState } from "react";
 import React from "react";
 import "../css-styles/ModelPop.css";
-import { HandleSubmitType } from "./MainContent";
+import { HandleSubmit } from "./MainContent";
 
 type ModelPopupProps = {
   idValue: string;
   nameValue: string;
-  handleSubmit: ({ id, name }: HandleSubmitType) => void;
+  handleSubmit: ({ id, name }: HandleSubmit) => void;
   handleClose: () => void;
 };
 const ModelPopup = ({
