@@ -1,53 +1,19 @@
-import { useState } from "react";
 import MainContent from "./MainContent";
 import SideBar from "./SideBar";
-import { createContext } from "react";
-import React from "react";
 import "../css-styles/Dashboard.css";
-import {
-  Folder,
-  FolderContextData,
-  ModelActionContextData,
-  ModelAction,
-} from "../types/DashboardCommonTypes";
-
-export const data: Folder[] = [
-  { id: "1", name: "folder1" },
-  { id: "2", name: "folder2" },
-];
-export const FoldersContext = createContext<FolderContextData>({
-  folders: data,
-  setFolders: () => {},
-});
-export const ModelActionContext = createContext<ModelActionContextData>({
-  modelAction: {
-    action: "",
-    folderId: "",
-    folderName: "",
-  },
-  setModelAction: () => {},
-});
-
+import ModelActionContextCreate from "../Context/ModelActionContextCreate";
+import FolderContextCreate from "../Context/FolderContextCreate";
 const Dashboard = () => {
-  const [folders, setFolders] = useState<Folder[]>(
-    JSON.parse(localStorage.getItem("folders")!) || data
-  );
-
-  const [modelAction, setModelAction] = useState<ModelAction>({
-    action: "",
-    folderId: "",
-    folderName: "",
-  });
-
+  
   return (
+    <FolderContextCreate>
+   <ModelActionContextCreate>
     <div className="dashboard">
-      <FoldersContext.Provider value={{ folders, setFolders }}>
-        <ModelActionContext.Provider value={{ modelAction, setModelAction }}>
-          <SideBar />
-          <MainContent />
-        </ModelActionContext.Provider>
-      </FoldersContext.Provider>
+      <SideBar />
+      <MainContent />
     </div>
+    </ModelActionContextCreate>
+    </FolderContextCreate>
   );
 };
 

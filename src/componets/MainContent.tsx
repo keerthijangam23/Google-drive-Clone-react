@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop";
 import FolderActionPopUp from "./FolderActionPopUp";
 import "../css-styles/MainContent.css";
-import { FoldersContext, ModelActionContext } from "./Dashboard";
+import {  ModelActionContext } from "../Context/ModelActionContextCreate";
+import {FoldersContext} from "../Context/FolderContextCreate";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {Folder,FolderContextData, ModelActionContextData, ModelAction} from "../types/DashboardCommonTypes";
@@ -18,10 +19,10 @@ const MainContent = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const { folders, setFolders } = useContext<FolderContextData>(FoldersContext);
-
+  
   const { modelAction, setModelAction } =
     useContext<ModelActionContextData>(ModelActionContext);
-
+  
   const handleDeleteFolder = (folderId: string):void => {
     setFolders((prevFolders: Folder[]) =>
       prevFolders.filter(
@@ -80,16 +81,17 @@ const MainContent = () => {
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(folders));
   }, [folders, handleRenameFolder]);
-
+ 
   return (
     <>
-      <div className="folders">
+      <div className="folders" data-testid = "initialFolders">
         {folders.map((val: { id: string; name: string }):ReactNode=> (
           <div className="folder-container" key={val.id}>
             <div className="folder-dot-icon">
               <FcOpenedFolder size={40} />
               <MoreVertIcon
                 onClick={() =>
+                  
                   setModelAction({
                     action: "",
                     folderId: val.id,
@@ -100,7 +102,7 @@ const MainContent = () => {
               />
             </div>
 
-            <div className="folder-name">{val.name}</div>
+            <div className="folder-name" >{val.name}</div>
           </div>
         ))}
       </div>

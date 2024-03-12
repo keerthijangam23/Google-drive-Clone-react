@@ -7,9 +7,6 @@
 .drive {
   display: flex;
 }
-.add-icon {
-  color: darkgreen;
-}
 .new-button {
   width: 100px;
   height: 40px;
