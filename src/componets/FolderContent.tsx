@@ -11,10 +11,10 @@ export type File = {
 };
 export const Filesdata: File[] = [
   { id: 1, name: "file1", folderId: 1 },
-  { id: 2, name: "file1", folderId: 1 },
-  { id: 3, name: "file2", folderId: 2 },
-  { id: 4, name: "file1", folderId: 2 },
-  { id: 5, name: "file2", folderId: 2 }
+  { id: 2, name: "file2", folderId: 1 },
+  { id: 3, name: "file1", folderId: 2 },
+  { id: 4, name: "file3", folderId: 2 },
+  { id: 5, name: "file3", folderId: 2 }
  
 ];
 export default function FolderContent() {
@@ -32,7 +32,7 @@ export default function FolderContent() {
       {files.map((file: File) => {
         if (file.folderId === Number(folderId)) {
           return (
-            <div key={file.id} className="files-container">
+            <div key={file.id} data-testid = "file" className="files-container" >
               <FaFileAlt size={65} />
               <div className="file-name">{file.name}</div>
             </div>

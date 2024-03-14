@@ -20,22 +20,24 @@ const ModelPopup = ({
   return (
     <div className="popup">
       <div className="popup-inner">
-        <h2>{nameValue ? "Rename" : "Create"}</h2>
+        <h2>{nameValue ? "Rename Folder" : "Create Folder"}</h2>
 
         <input
           className="folder-input"
+          data-testid = "folder-input"
           type="text"
           onChange={(event) => {
             setFolderName(event.target.value);
           }}
-          placeholder={folderName}
+          value={folderName}
         />
         <div className="folder-buttons-container">
-          <button className="cancel-button" onClick={handleClose}>
+          <button className="cancel-button" data-testid="cancel-button" onClick={handleClose}>
             Cancel
           </button>
           <button
             className="create-button"
+            data-testid="create-button"
             onClick={() => {
               handleSubmit({ id: idValue, name: folderName });
             }}

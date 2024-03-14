@@ -29,6 +29,7 @@ const FolderActionPopUp = ({
       <div className="popup-inner">
         <div
           className="open"
+          data-testid = "open"
           onClick={() => {
             handleOpenFolder(folderId, folderName);
           }}
@@ -37,6 +38,7 @@ const FolderActionPopUp = ({
         </div>
         <div
           className="del"
+          data-testid="del"
           onClick={() => {
             handleDeleteFolder(folderId);
           }}
@@ -45,13 +47,14 @@ const FolderActionPopUp = ({
         </div>
         <div
           className="rename"
+          data-testid="rename"
           onClick={() => {
             handleRenameFolder(folderId, folderName);
           }}
         >
           Rename
         </div>
-        <div className="cancel" onClick={() => handleCancel()}>
+        <div className="cancel" data-testid="cancel" onClick={() => handleCancel()}>
           Cancel
         </div>
       </div>

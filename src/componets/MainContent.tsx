@@ -5,11 +5,16 @@ import { useNavigate } from "react-router-dom";
 import ModelPopup from "./ModelPop";
 import FolderActionPopUp from "./FolderActionPopUp";
 import "../css-styles/MainContent.css";
-import {  ModelActionContext } from "../Context/ModelActionContextCreate";
-import {FoldersContext} from "../Context/FolderContextCreate";
+import { ModelActionContext } from "../Context/ModelActionContextCreate";
+import { FoldersContext } from "../Context/FolderContextCreate";
 import { useContext } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import {Folder,FolderContextData, ModelActionContextData, ModelAction} from "../types/DashboardCommonTypes";
+import {
+  Folder,
+  FolderContextData,
+  ModelActionContextData,
+  ModelAction,
+} from "../types/DashboardCommonTypes";
 
 export type HandleSubmit = {
   id: string;
@@ -19,11 +24,11 @@ const MainContent = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const { folders, setFolders } = useContext<FolderContextData>(FoldersContext);
-  
+
   const { modelAction, setModelAction } =
     useContext<ModelActionContextData>(ModelActionContext);
-  
-  const handleDeleteFolder = (folderId: string):void => {
+
+  const handleDeleteFolder = (folderId: string): void => {
     setFolders((prevFolders: Folder[]) =>
       prevFolders.filter(
         (folder: { id: string; name: string }) => folder.id !== folderId
@@ -32,12 +37,12 @@ const MainContent = () => {
 
     setModelAction({
       action: "",
-      folderId: '',
+      folderId: "",
       folderName: "",
     });
   };
 
-  const handleRenameFolder = (folderId: string, folderName: string):void => {
+  const handleRenameFolder = (folderId: string, folderName: string): void => {
     setIsOpen(false);
     setModelAction({
       action: "rename",
@@ -55,11 +60,11 @@ const MainContent = () => {
     setFolders(folders);
   };
 
-  const handleCancel = ():void => {
-    setModelAction({ action: "", folderId: '', folderName: "" });
+  const handleCancel = (): void => {
+    setModelAction({ action: "", folderId: "", folderName: "" });
   };
 
-  const handleOpenFolder = (folderId: string, folderName: string):void => {
+  const handleOpenFolder = (folderId: string, folderName: string): void => {
     navigate(`/folder/${folderId}`);
     setModelAction({
       action: "",
@@ -67,13 +72,13 @@ const MainContent = () => {
       folderName: folderName,
     });
   };
-  const handleSubmitInside = (id: string, name: string):void | ""=> {
-     return (
+  const handleSubmitInside = (id: string, name: string): void | "" => {
+    return (
       modelAction.folderId &&
       (handleRenameFolder(id, name),
       setModelAction({
         action: "",
-        folderId: '',
+        folderId: "",
         folderName: "",
       }))
     );
@@ -81,30 +86,32 @@ const MainContent = () => {
   useEffect(() => {
     localStorage.setItem("folders", JSON.stringify(folders));
   }, [folders, handleRenameFolder]);
- 
+
   return (
     <>
-      <div className="folders" data-testid = "initialFolders">
-        {folders.map((val: { id: string; name: string }):ReactNode=> (
-          <div className="folder-container" key={val.id}>
-            <div className="folder-dot-icon">
-              <FcOpenedFolder size={40} />
-              <MoreVertIcon
-                onClick={() =>
-                  
-                  setModelAction({
-                    action: "",
-                    folderId: val.id,
-                    folderName: val.name,
-                  })
-                }
-                style={{ height: "20px", width: "20px" }}
-              />
-            </div>
+      <div className="folders" data-testid="initialFolders">
+        {folders.map(
+          (val: { id: string; name: string }): ReactNode => (
+            <div className="folder-container" key={val.id}>
+              <div className="folder-dot-icon">
+                <FcOpenedFolder size={40} />
+                <MoreVertIcon
+                  data-testid="folder-pop-up"
+                  onClick={() =>
+                    setModelAction({
+                      action: "",
+                      folderId: val.id,
+                      folderName: val.name,
+                    })
+                  }
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </div>
 
-            <div className="folder-name" >{val.name}</div>
-          </div>
-        ))}
+              <div className="folder-name">{val.name}</div>
+            </div>
+          )
+        )}
       </div>
 
       {modelAction.action === "rename" && (
@@ -112,15 +119,15 @@ const MainContent = () => {
           handleSubmit={({ id, name }: HandleSubmit): void => {
             handleSubmitInside(id, name);
           }}
-          handleClose={() :void=> {
-            setModelAction({ action: "", folderId: '', folderName: "" });
+          handleClose={(): void => {
+            setModelAction({ action: "", folderId: "", folderName: "" });
           }}
           idValue={modelAction.folderId}
           nameValue={modelAction.folderName}
         />
       )}
 
-      {modelAction.folderId !== '' && (
+      {modelAction.folderId !== "" && (
         <FolderActionPopUp
           isOpen={isOpen}
           handleDeleteFolder={handleDeleteFolder}
