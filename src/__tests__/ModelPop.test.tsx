@@ -1,5 +1,7 @@
 import { fireEvent, render, screen ,cleanup} from "@testing-library/react";
 import ModelPopup from "../componets/ModelPop";
+import userEvent from '@testing-library/user-event'
+
 
 
 describe("ModelPOpup testing",()=>{
@@ -12,7 +14,7 @@ describe("ModelPOpup testing",()=>{
         expect(folderInput).toBeInTheDocument();
 
         fireEvent.change(folderInput, { target: { value: "folder1" } });
-        expect(folderInput.value).toBe("folder1");
+        expect(screen.getByTestId("folder-input")).toHaveValue("folder1");
 
         const cancelButton = getByTestId("cancel-button")
         fireEvent.click(cancelButton);
