@@ -1,7 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import FolderActionPopUp from "../componets/FolderActionPopUp";
-import FolderContextCreate from "../Context/FolderContextCreate";
-import ModelActionContextCreate from "../Context/ModelActionContextCreate";
 
 describe("Testing the popup it appears when we click on vertical dots of each folder", () => {
   test("testing for Open text", () => {
@@ -20,23 +18,19 @@ describe("Testing the popup it appears when we click on vertical dots of each fo
     );
 
     const openButton = screen.getByTestId("open");
-  fireEvent.click(openButton);
-  expect(handleOpenFolder).toHaveBeenCalled();
-
+    fireEvent.click(openButton);
+    expect(handleOpenFolder).toHaveBeenCalled();
 
     const renameButton = screen.getByTestId("rename");
-  fireEvent.click(renameButton);
-  expect(handleRenameFolder).toHaveBeenCalled();
+    fireEvent.click(renameButton);
+    expect(handleRenameFolder).toHaveBeenCalled();
 
-  const delteButton = screen.getByTestId("del");
-  fireEvent.click(delteButton);
-  expect(handleDeleteFolder).toHaveBeenCalled();
+    const delteButton = screen.getByTestId("del");
+    fireEvent.click(delteButton);
+    expect(handleDeleteFolder).toHaveBeenCalled();
 
-  const cancelButton = screen.getByTestId("cancel");
-  fireEvent.click(cancelButton);
-  expect(handleCancel).toHaveBeenCalled();
-
-
+    const cancelButton = screen.getByTestId("cancel");
+    fireEvent.click(cancelButton);
+    expect(handleCancel).toHaveBeenCalled();
   });
-  
 });
