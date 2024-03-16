@@ -1,12 +1,8 @@
 import { fireEvent, getByRole, render, screen } from "@testing-library/react";
 import SideBar from "../componets/SideBar";
-// import FolderContextCreate from "../Context/FolderContextCreate";
-// import ModelActionContextCreate from "../Context/ModelActionContextCreate";
 import { FoldersContext } from "../Context/FolderContextCreate";
 import { ModelActionContext } from "../Context/ModelActionContextCreate";
-// import { data } from "../Context/FolderContextCreate";
-import { useContext, useState } from "react";
-import { ModelActionContextData } from "../types/DashboardCommonTypes";
+
 
 describe("testing the sidebar", () => {
   test("test the drive logo", () => {
@@ -21,23 +17,6 @@ describe("testing the sidebar", () => {
   });
 
   describe("Sidebar", () => {
-    test("opens modal when button is clicked", () => {
-    //   const { getByText, getByRole, getByTestId } = render(
-    //     <FolderContextCreate>
-    //       <ModelActionContextCreate>
-    //         <SideBar />
-    //       </ModelActionContextCreate>
-    //     </FolderContextCreate>
-    //   );
-    //   const newButton = screen.getByText("New");
-    //   fireEvent.click(newButton);
-    //   expect(getByText("Create Folder")).toBeInTheDocument();
-    //   expect(getByText("Create")).toBeInTheDocument();
-    //   expect(getByTestId("cancel-button")).toBeInTheDocument();
-    //   expect(getByRole("textbox")).toBeInTheDocument();
-
-       
-
     const mockSetFoldersData = jest.fn();
     const foldersData = [
       { id: "1", name: "folder1" },
@@ -52,9 +31,9 @@ describe("testing the sidebar", () => {
     );
 
     const mockModelAction = {
-      action: "aa",
-      folderId: "a",
-      folderName: "a",
+      action: "create",
+      folderId: "",
+      folderName: "",
     };
     const mockSetModelAction = jest.fn();
 
@@ -69,22 +48,58 @@ describe("testing the sidebar", () => {
       </ModelActionContext.Provider>
     );
 
-    const { getByText,getByTestId,getByRole } = render(
-      <MockFoldersDataProvider>
-        <MockModelActionProvider>
-          <SideBar />
-        </MockModelActionProvider>
-      </MockFoldersDataProvider>
-    );
-
-   const newButton = screen.getByText("New");
-      fireEvent.click(newButton);
-      screen.debug();
-      expect(getByText("Create Folder")).toBeInTheDocument();
-      expect(getByText("Create")).toBeInTheDocument();
-      expect(getByTestId("cancel-button")).toBeInTheDocument();
-      expect(getByRole("textbox")).toBeInTheDocument();
+    test("testing is model POP up opening or not and checking create button click", () => {
+      const { getByText, getByTestId, getByRole } = render(
+        <MockFoldersDataProvider>
+          <MockModelActionProvider>
+            <SideBar />
+          </MockModelActionProvider>
+        </MockFoldersDataProvider>
+      );
+      const newBtn = getByText("New");
+      fireEvent.click(newBtn);
+    
+      const createBtn = getByText("Create");
+      fireEvent.click(createBtn);
+      expect(mockSetModelAction).toHaveBeenCalled();
 
     });
+    test("testing whether alert coming or not when folder name is empty", () => {
+      const { getByText, getByTestId, getByRole } = render(
+        <MockFoldersDataProvider>
+          <MockModelActionProvider>
+            <SideBar />
+          </MockModelActionProvider>
+        </MockFoldersDataProvider>
+      );
+      const newBtn = getByText("New");
+      fireEvent.click(newBtn);
+      
+      const folderInput = getByTestId("folder-input");
+      fireEvent.change(folderInput, { target: { value: "" } });
+      const alertMock = jest.spyOn(window,'alert');
+      const createBtn = getByText("Create");
+      fireEvent.click(createBtn);
+      expect(alertMock).toHaveBeenCalledTimes(1)
+    
+
+    });
+    test("testing is model POP up opening or not and checking cancel button click", () => {
+      const { getByText, getByTestId, getByRole } = render(
+        <MockFoldersDataProvider>
+          <MockModelActionProvider>
+            <SideBar />
+          </MockModelActionProvider>
+        </MockFoldersDataProvider>
+      );
+      const newBtn = getByText("New");
+      fireEvent.click(newBtn);
+    
+      const cancelBtn = getByTestId("cancel-button");
+      fireEvent.click(cancelBtn);
+      expect(mockSetModelAction).toHaveBeenCalled();
+    });
+    
   });
 });
+

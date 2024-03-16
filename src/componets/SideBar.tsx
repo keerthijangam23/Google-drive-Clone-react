@@ -20,9 +20,7 @@ const SideBar = () => {
   const small_id: string = unique_id.slice(0, 4);
 
   const handleNewButtonClick = (): void => {
-    console.log("before:",modelAction)
     setModelAction({ action: "create", folderId: "", folderName: "" });
-    console.log("after", modelAction)
   };
 
   const handleFolderCreation = (id: string, message: string): void => {

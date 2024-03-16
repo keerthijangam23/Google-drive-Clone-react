@@ -15,7 +15,7 @@ const ModelPopup = ({
   handleSubmit,
   handleClose,
 }: ModelPopupProps) => {
-  let name:string = nameValue ? nameValue : "Untitled folder";
+  let name:string = nameValue ? nameValue : "Untitled Folder";
   const [folderName, setFolderName] = useState<string>(name);
   return (
     <div className="popup">

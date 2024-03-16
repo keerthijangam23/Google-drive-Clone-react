@@ -17,11 +17,9 @@ const FolderContextCreate = ({ children }: any) => {
     JSON.parse(localStorage.getItem("folders")!) || data
   );
   return (
-    <div>
       <FoldersContext.Provider value={{ folders, setFolders }}>
         {children}
       </FoldersContext.Provider>
-    </div>
   );
 };
 

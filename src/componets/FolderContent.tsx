@@ -32,7 +32,7 @@ export default function FolderContent() {
       {files.map((file: File) => {
         if (file.folderId === Number(folderId)) {
           return (
-            <div key={file.id} data-testid = "file" className="files-container" >
+            <div key={file.id} data-testid = "files" className="files-container" >
               <FaFileAlt size={65} />
               <div className="file-name">{file.name}</div>
             </div>
