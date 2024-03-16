@@ -16,8 +16,8 @@ describe("ModelPOpup testing", () => {
     const folderInput = getByTestId("folder-input");
     expect(folderInput).toBeInTheDocument();
 
-    fireEvent.change(folderInput, { target: { value: "folder1" } });
-    expect(screen.getByTestId("folder-input")).toHaveValue("folder1");
+    fireEvent.change(folderInput, { target: { value: "folder12" } });
+    expect(screen.getByTestId("folder-input")).toHaveValue("folder12");
 
     const cancelButton = getByTestId("cancel-button");
     fireEvent.click(cancelButton);
